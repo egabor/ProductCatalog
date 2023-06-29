@@ -12,6 +12,8 @@
 		62B621762A4E010B003ACCA6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62B621752A4E010B003ACCA6 /* Assets.xcassets */; };
 		62B621792A4E010B003ACCA6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62B621782A4E010B003ACCA6 /* Preview Assets.xcassets */; };
 		62B621832A4E010B003ACCA6 /* beveragesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B621822A4E010B003ACCA6 /* beveragesTests.swift */; };
+		62B6219D2A4E01BE003ACCA6 /* Resolver in Frameworks */ = {isa = PBXBuildFile; productRef = 62B6219C2A4E01BE003ACCA6 /* Resolver */; };
+		62B621A02A4E02BF003ACCA6 /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = 62B6219F2A4E02BF003ACCA6 /* SQLite */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,6 +41,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				62B621A02A4E02BF003ACCA6 /* SQLite in Frameworks */,
+				62B6219D2A4E01BE003ACCA6 /* Resolver in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -113,6 +117,10 @@
 			dependencies = (
 			);
 			name = beverages;
+			packageProductDependencies = (
+				62B6219C2A4E01BE003ACCA6 /* Resolver */,
+				62B6219F2A4E02BF003ACCA6 /* SQLite */,
+			);
 			productName = beverages;
 			productReference = 62B6216E2A4E0109003ACCA6 /* beverages.app */;
 			productType = "com.apple.product-type.application";
@@ -163,6 +171,10 @@
 				Base,
 			);
 			mainGroup = 62B621652A4E0108003ACCA6;
+			packageReferences = (
+				62B6219B2A4E01BE003ACCA6 /* XCRemoteSwiftPackageReference "Resolver" */,
+				62B6219E2A4E02BF003ACCA6 /* XCRemoteSwiftPackageReference "SQLite.swift" */,
+			);
 			productRefGroup = 62B6216F2A4E0109003ACCA6 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -464,6 +476,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		62B6219B2A4E01BE003ACCA6 /* XCRemoteSwiftPackageReference "Resolver" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hmlongco/Resolver";
+			requirement = {
+				kind = exactVersion;
+				version = 1.5.0;
+			};
+		};
+		62B6219E2A4E02BF003ACCA6 /* XCRemoteSwiftPackageReference "SQLite.swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/stephencelis/SQLite.swift.git";
+			requirement = {
+				kind = exactVersion;
+				version = 0.14.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		62B6219C2A4E01BE003ACCA6 /* Resolver */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 62B6219B2A4E01BE003ACCA6 /* XCRemoteSwiftPackageReference "Resolver" */;
+			productName = Resolver;
+		};
+		62B6219F2A4E02BF003ACCA6 /* SQLite */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 62B6219E2A4E02BF003ACCA6 /* XCRemoteSwiftPackageReference "SQLite.swift" */;
+			productName = SQLite;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 62B621662A4E0108003ACCA6 /* Project object */;
 }
