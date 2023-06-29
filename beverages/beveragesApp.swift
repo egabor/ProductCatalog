@@ -11,14 +11,16 @@ import SwiftUI
 struct beveragesApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .onAppear {
-                    do {
-                        try SQLiteHelper.copyDatabaseIfNeeded()
-                    } catch {
-                        print(error)
-                    }
+            NavigationView {
+                ProductListScreen()
+            }
+            .onAppear {
+                do {
+                    try SQLiteHelper.copyDatabaseIfNeeded()
+                } catch {
+                    print(error)
                 }
+            }
         }
     }
 }
