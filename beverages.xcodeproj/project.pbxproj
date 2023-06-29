@@ -19,6 +19,7 @@
 		62B621AE2A4E086D003ACCA6 /* DBProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B621AD2A4E086D003ACCA6 /* DBProduct.swift */; };
 		62B621B02A4E0AD9003ACCA6 /* ProductListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B621AF2A4E0AD9003ACCA6 /* ProductListScreen.swift */; };
 		62B621B22A4E0AEA003ACCA6 /* ProductDetailsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B621B12A4E0AEA003ACCA6 /* ProductDetailsScreen.swift */; };
+		62B621B42A4E0D11003ACCA6 /* ProductCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B621B32A4E0D11003ACCA6 /* ProductCategory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		62B621AD2A4E086D003ACCA6 /* DBProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBProduct.swift; sourceTree = "<group>"; };
 		62B621AF2A4E0AD9003ACCA6 /* ProductListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListScreen.swift; sourceTree = "<group>"; };
 		62B621B12A4E0AEA003ACCA6 /* ProductDetailsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsScreen.swift; sourceTree = "<group>"; };
+		62B621B32A4E0D11003ACCA6 /* ProductCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCategory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +144,7 @@
 		62B621A82A4E0817003ACCA6 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				62B621B32A4E0D11003ACCA6 /* ProductCategory.swift */,
 				62B621AA2A4E0838003ACCA6 /* Product */,
 				62B621A92A4E082E003ACCA6 /* DBProduct */,
 			);
@@ -279,6 +282,7 @@
 				62B621A22A4E0306003ACCA6 /* Resolver+Registry.swift in Sources */,
 				62B621A42A4E035E003ACCA6 /* SQLiteHelper.swift in Sources */,
 				62B621AE2A4E086D003ACCA6 /* DBProduct.swift in Sources */,
+				62B621B42A4E0D11003ACCA6 /* ProductCategory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
