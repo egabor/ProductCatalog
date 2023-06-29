@@ -12,6 +12,13 @@ struct beveragesApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .onAppear {
+                    do {
+                        try SQLiteHelper.copyDatabaseIfNeeded()
+                    } catch {
+                        print(error)
+                    }
+                }
         }
     }
 }

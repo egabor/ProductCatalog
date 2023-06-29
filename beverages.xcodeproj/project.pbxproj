@@ -15,6 +15,7 @@
 		62B6219D2A4E01BE003ACCA6 /* Resolver in Frameworks */ = {isa = PBXBuildFile; productRef = 62B6219C2A4E01BE003ACCA6 /* Resolver */; };
 		62B621A02A4E02BF003ACCA6 /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = 62B6219F2A4E02BF003ACCA6 /* SQLite */; };
 		62B621A22A4E0306003ACCA6 /* Resolver+Registry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B621A12A4E0306003ACCA6 /* Resolver+Registry.swift */; };
+		62B621A42A4E035E003ACCA6 /* SQLiteHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B621A32A4E035E003ACCA6 /* SQLiteHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		62B6217E2A4E010B003ACCA6 /* beveragesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = beveragesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		62B621822A4E010B003ACCA6 /* beveragesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = beveragesTests.swift; sourceTree = "<group>"; };
 		62B621A12A4E0306003ACCA6 /* Resolver+Registry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Resolver+Registry.swift"; sourceTree = "<group>"; };
+		62B621A32A4E035E003ACCA6 /* SQLiteHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +83,7 @@
 			children = (
 				62B621712A4E0109003ACCA6 /* beveragesApp.swift */,
 				62B621A12A4E0306003ACCA6 /* Resolver+Registry.swift */,
+				62B621A32A4E035E003ACCA6 /* SQLiteHelper.swift */,
 				62B621732A4E0109003ACCA6 /* ContentView.swift */,
 				62B621752A4E010B003ACCA6 /* Assets.xcassets */,
 				62B621772A4E010B003ACCA6 /* Preview Content */,
@@ -215,6 +218,7 @@
 				62B621742A4E0109003ACCA6 /* ContentView.swift in Sources */,
 				62B621722A4E0109003ACCA6 /* beveragesApp.swift in Sources */,
 				62B621A22A4E0306003ACCA6 /* Resolver+Registry.swift in Sources */,
+				62B621A42A4E035E003ACCA6 /* SQLiteHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
