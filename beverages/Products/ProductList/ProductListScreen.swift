@@ -8,8 +8,19 @@
 import SwiftUI
 
 struct ProductListScreen: View {
+
     var body: some View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+            .navigationTitle("Products") // TODO: Localize
+            .toolbar(content: addNewProductButton)
+    }
+
+    func addNewProductButton() -> some View {
+        NavigationLink {
+            ProductDetailsScreen()
+        } label: {
+            Image(systemName: "plus") // TODO: Move to constant
+        }
     }
 }
 
