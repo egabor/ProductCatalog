@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum ProductCategory: String {
+enum ProductCategory: String, CaseIterable, Identifiable {
 
     case general
     case sparkling
@@ -20,7 +20,8 @@ enum ProductCategory: String {
     case water
     case flavoredWater
     case sparklingWater
-    case unknown
+
+    var id: String { rawValue }
 }
 
 extension ProductCategory {
@@ -30,9 +31,35 @@ extension ProductCategory {
         guard let rawValue = rawValue else { return nil }
         guard let value: ProductCategory = .init(rawValue: rawValue) else {
             print("Cannot parse String to ProductCategory: \(rawValue)")
-            self = .unknown
-            return
+            return nil
         }
         self = value
+    }
+
+    var displayValue: String {
+        switch self {
+            case .general:
+                return "00 - General"
+            case .sparkling:
+                return "01 - Sparkling"
+            case .coffee:
+                return "02 - Coffee"
+            case .juice:
+                return "03 - Juice"
+            case .sports:
+                return "04 - Sports"
+            case .vitaminWater:
+                return "05 - Vitamin Water"
+            case .energy:
+                return "06 - Energy"
+            case .tea:
+                return "07 - Tea"
+            case .water:
+                return "08 - Water"
+            case .flavoredWater:
+                return "09 - Flavored Water"
+            case .sparklingWater:
+                return "10 - Sparkling Water"
+        }
     }
 }

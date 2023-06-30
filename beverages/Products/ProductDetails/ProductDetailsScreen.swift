@@ -40,6 +40,28 @@ struct ProductDetailsScreen: View {
                 },
                 message: { Text(viewModel.warningMessage) }
             )
+            .fullScreenCover(isPresented: $viewModel.shouldShowBarcodeScanner) {
+                NavigationView {
+                    ScannerScreen(
+                        recognizedItems: $viewModel.recognizedVisionItems,
+                        recognizedDataType: .barcode(symbologies: [.ean8, .ean13])
+                    )
+                    .ignoresSafeArea()
+                    .toolbar {
+                        Button(
+                            action: viewModel.hideBarcodeScanner,
+                            label: { Image(systemName: "xmark") }
+                        )
+                    }
+                }
+            }
+            .onReceive(viewModel.$barcode) { barcode in
+                guard barcode.isEmpty == false else { return }
+                let feedbackGenerator = UINotificationFeedbackGenerator()
+                feedbackGenerator.prepare()
+                feedbackGenerator.notificationOccurred(.success)
+                viewModel.hideBarcodeScanner()
+            }
     }
 
     var content: some View {
@@ -48,7 +70,76 @@ struct ProductDetailsScreen: View {
     }
 
     var form: some View {
-        Text("Hi!")
+        Form {
+            Section(
+                content: {
+                    productNameTextField
+                },
+                header: {
+                    Text("Name")
+                }
+            )
+
+            Section(
+                content: {
+                    barcodeInput
+                },
+                header: {
+                    Text("Barcode")
+                }
+            )
+
+            Section(
+                content: {
+                    categorySelector
+                },
+                header: {
+                    Text("Category")
+                }
+            )
+        }
+    }
+
+    var productNameTextField: some View {
+        TextField(
+            "Name",
+            text: $viewModel.name
+        )
+        .disableAutocorrection(true)
+    }
+
+    var barcodeInput: some View {
+        HStack {
+            Text(viewModel.barcode)
+            Spacer()
+            Button(
+                action: viewModel.showBarcodeScanner,
+                label: { Text("Scan") }
+            )
+        }
+    }
+
+    var categorySelector: some View {
+        Menu(
+            content: {
+                ForEach(viewModel.categories) { category in
+                    Button(
+                        action: { viewModel.category = category },
+                        label: { Text(category.displayValue) }
+                    )
+                }
+            },
+            label: {
+                HStack {
+                    Spacer()
+                    if let category = viewModel.category {
+                        Text(category.displayValue)
+                    } else {
+                        Text("Select Category")
+                    }
+                }
+            }
+        )
     }
 }
 

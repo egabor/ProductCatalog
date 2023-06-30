@@ -27,6 +27,7 @@
 		62B621BE2A4EE112003ACCA6 /* ProductDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B621BD2A4EE112003ACCA6 /* ProductDetailsViewModel.swift */; };
 		62B621C02A4EEBCA003ACCA6 /* Resolver+Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B621BF2A4EEBCA003ACCA6 /* Resolver+Product.swift */; };
 		62B621C22A4EEC05003ACCA6 /* ProductService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B621C12A4EEC05003ACCA6 /* ProductService.swift */; };
+		62B621C52A4F0910003ACCA6 /* ScannerScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B621C42A4F0910003ACCA6 /* ScannerScreen.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,7 @@
 		62B621BD2A4EE112003ACCA6 /* ProductDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsViewModel.swift; sourceTree = "<group>"; };
 		62B621BF2A4EEBCA003ACCA6 /* Resolver+Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Resolver+Product.swift"; sourceTree = "<group>"; };
 		62B621C12A4EEC05003ACCA6 /* ProductService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductService.swift; sourceTree = "<group>"; };
+		62B621C42A4F0910003ACCA6 /* ScannerScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +135,7 @@
 		62B621A52A4E07C1003ACCA6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
+				62B621C32A4F08F5003ACCA6 /* Scanner */,
 				62B621BF2A4EEBCA003ACCA6 /* Resolver+Product.swift */,
 				62B621C12A4EEC05003ACCA6 /* ProductService.swift */,
 				62B621A62A4E07E9003ACCA6 /* ProductList */,
@@ -186,6 +189,14 @@
 				62B621B52A4ECDA9003ACCA6 /* Product+Parsing.swift */,
 			);
 			path = Product;
+			sourceTree = "<group>";
+		};
+		62B621C32A4F08F5003ACCA6 /* Scanner */ = {
+			isa = PBXGroup;
+			children = (
+				62B621C42A4F0910003ACCA6 /* ScannerScreen.swift */,
+			);
+			path = Scanner;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -307,6 +318,7 @@
 				62B621B82A4ED02E003ACCA6 /* DBProduct+Parsing.swift in Sources */,
 				62B621A42A4E035E003ACCA6 /* SQLiteHelper.swift in Sources */,
 				62B621BA2A4ED249003ACCA6 /* DBProduct+SQLite.swift in Sources */,
+				62B621C52A4F0910003ACCA6 /* ScannerScreen.swift in Sources */,
 				62B621AE2A4E086D003ACCA6 /* DBProduct.swift in Sources */,
 				62B621C02A4EEBCA003ACCA6 /* Resolver+Product.swift in Sources */,
 				62B621B42A4E0D11003ACCA6 /* ProductCategory.swift in Sources */,
@@ -458,6 +470,7 @@
 				DEVELOPMENT_TEAM = QT666FZ6Y2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "We need access to your Camera to enable barcode scanning.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -487,6 +500,7 @@
 				DEVELOPMENT_TEAM = QT666FZ6Y2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "We need access to your Camera to enable barcode scanning.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
