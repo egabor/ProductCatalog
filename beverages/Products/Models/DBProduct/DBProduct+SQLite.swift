@@ -60,9 +60,13 @@ extension DBProduct {
     func save() throws -> DBProduct {
 
         let rowId = try Self.db?.run(upsert)
-        guard let insertedRowIdInt64 = rowId else { throw SQLiteError.missingRowId }
-        let insertedRowId = Int(insertedRowIdInt64)
-        return try Self.fetch(by: insertedRowId)
+        if let productId = productId {
+            return try Self.fetch(by: productId)
+        } else {
+            guard let insertedRowIdInt64 = rowId else { throw SQLiteError.missingRowId }
+            let insertedRowId = Int(insertedRowIdInt64)
+            return try Self.fetch(by: insertedRowId)
+        }
     }
 
     static func delete(by id: Int) throws {
