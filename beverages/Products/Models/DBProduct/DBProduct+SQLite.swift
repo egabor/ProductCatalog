@@ -65,10 +65,9 @@ extension DBProduct {
         return try Self.fetch(by: insertedRowId)
     }
 
-    func delete() throws {
+    static func delete(by id: Int) throws {
 
-        guard let productId = productId else { throw SQLiteError.missingId }
-        let rowToDelete = Self.productsTable.filter(Expression<Int>(CodingKeys.productId.rawValue) == productId)
+        let rowToDelete = Self.productsTable.filter(Expression<Int>(CodingKeys.productId.rawValue) == id)
         _ = try Self.db?.run(rowToDelete.delete())
     }
 
