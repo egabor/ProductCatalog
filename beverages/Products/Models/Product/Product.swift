@@ -7,12 +7,12 @@
 
 import Foundation
 
-struct Product: Identifiable {
-    let productId: Int
+/// Product model for in-app usage
+struct Product {
+
+    let productId: Int?
     let imagePath: String?
     let name: String?
-    let barCode: String?
+    let barcode: String?
     let category: ProductCategory?
-
-    var id: Int { productId }
 }

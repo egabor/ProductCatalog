@@ -8,6 +8,7 @@
 import Foundation
 
 enum ProductCategory: String {
+
     case general
     case sparkling
     case coffee
@@ -20,4 +21,17 @@ enum ProductCategory: String {
     case flavoredWater
     case sparklingWater
     case unknown
+}
+
+extension ProductCategory {
+
+    init?(rawValue: String?) {
+        guard let rawValue = rawValue else { return nil }
+        guard let value: ProductCategory = .init(rawValue: rawValue) else {
+            print("Cannot parse String to ProductCategory: \(rawValue)")
+            self = .unknown
+            return
+        }
+        self = value
+    }
 }

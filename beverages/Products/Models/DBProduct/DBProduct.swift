@@ -7,10 +7,12 @@
 
 import Foundation
 
+/// Product model for database representation
 struct DBProduct {
+
     let productId: Int?
     let imagePath: String?
     let name: String?
-    let barCode: String?
+    let barcode: String?
     let category: String?
 }
