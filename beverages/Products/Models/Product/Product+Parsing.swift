@@ -12,7 +12,6 @@ import Foundation
 extension Product {
 
     static func from(_ dbProduct: DBProduct) -> Product {
-
         .init(
             productId: dbProduct.productId,
             imagePath: dbProduct.imagePath,

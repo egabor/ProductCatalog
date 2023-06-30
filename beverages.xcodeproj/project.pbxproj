@@ -22,6 +22,7 @@
 		62B621B42A4E0D11003ACCA6 /* ProductCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B621B32A4E0D11003ACCA6 /* ProductCategory.swift */; };
 		62B621B62A4ECDA9003ACCA6 /* Product+Parsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B621B52A4ECDA9003ACCA6 /* Product+Parsing.swift */; };
 		62B621B82A4ED02E003ACCA6 /* DBProduct+Parsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B621B72A4ED02E003ACCA6 /* DBProduct+Parsing.swift */; };
+		62B621BA2A4ED249003ACCA6 /* DBProduct+SQLite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B621B92A4ED249003ACCA6 /* DBProduct+SQLite.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +51,7 @@
 		62B621B32A4E0D11003ACCA6 /* ProductCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCategory.swift; sourceTree = "<group>"; };
 		62B621B52A4ECDA9003ACCA6 /* Product+Parsing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Product+Parsing.swift"; sourceTree = "<group>"; };
 		62B621B72A4ED02E003ACCA6 /* DBProduct+Parsing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DBProduct+Parsing.swift"; sourceTree = "<group>"; };
+		62B621B92A4ED249003ACCA6 /* DBProduct+SQLite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DBProduct+SQLite.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +162,7 @@
 			children = (
 				62B621AD2A4E086D003ACCA6 /* DBProduct.swift */,
 				62B621B72A4ED02E003ACCA6 /* DBProduct+Parsing.swift */,
+				62B621B92A4ED249003ACCA6 /* DBProduct+SQLite.swift */,
 			);
 			path = DBProduct;
 			sourceTree = "<group>";
@@ -289,6 +292,7 @@
 				62B621A22A4E0306003ACCA6 /* Resolver+Registry.swift in Sources */,
 				62B621B82A4ED02E003ACCA6 /* DBProduct+Parsing.swift in Sources */,
 				62B621A42A4E035E003ACCA6 /* SQLiteHelper.swift in Sources */,
+				62B621BA2A4ED249003ACCA6 /* DBProduct+SQLite.swift in Sources */,
 				62B621AE2A4E086D003ACCA6 /* DBProduct.swift in Sources */,
 				62B621B42A4E0D11003ACCA6 /* ProductCategory.swift in Sources */,
 			);

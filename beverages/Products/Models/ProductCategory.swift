@@ -26,6 +26,7 @@ enum ProductCategory: String {
 extension ProductCategory {
 
     init?(rawValue: String?) {
+
         guard let rawValue = rawValue else { return nil }
         guard let value: ProductCategory = .init(rawValue: rawValue) else {
             print("Cannot parse String to ProductCategory: \(rawValue)")

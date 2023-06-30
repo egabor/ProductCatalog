@@ -16,3 +16,15 @@ struct DBProduct {
     let barcode: String?
     let category: String?
 }
+
+extension DBProduct {
+
+    enum CodingKeys: String, CodingKey {
+
+        case productId
+        case imagePath
+        case name
+        case barcode
+        case category
+    }
+}

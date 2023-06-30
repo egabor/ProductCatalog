@@ -13,7 +13,6 @@ import SQLite
 extension DBProduct {
 
     static func from(_ product: Product) -> DBProduct {
-
         .init(
             productId: product.productId,
             imagePath: product.imagePath,
@@ -29,13 +28,12 @@ extension DBProduct {
 extension DBProduct {
 
     static func from(_ row: Row) -> DBProduct {
-
         .init(
-            productId: row[Expression<Int    >("productId")],
-            imagePath: row[Expression<String?>("imagePath")],
-            name:      row[Expression<String?>("name")],
-            barcode:   row[Expression<String?>("barcode")],
-            category:  row[Expression<String?>("category")]
+            productId: row[Expression<Int    >(CodingKeys.productId.rawValue)],
+            imagePath: row[Expression<String?>(CodingKeys.imagePath.rawValue)],
+            name:      row[Expression<String?>(CodingKeys.name.rawValue)],
+            barcode:   row[Expression<String?>(CodingKeys.barcode.rawValue)],
+            category:  row[Expression<String?>(CodingKeys.category.rawValue)]
         )
     }
 }
