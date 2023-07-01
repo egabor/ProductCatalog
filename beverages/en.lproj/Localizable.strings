@@ -42,3 +42,22 @@
 "productDetails.screen.scanBarcodeButton.title" = "Scan";
 "productDetails.screen.section.category.title" = "Category";
 "productDetails.screen.selectCategory.title" = "Select Category";
+
+// MARK: - Product Category
+
+"productCategory.general.title" = "00 - General";
+"productCategory.sparkling.title" = "01 - Sparkling";
+"productCategory.coffee.title" = "02 - Coffee";
+"productCategory.juice.title" = "03 - Juice";
+"productCategory.sports.title" = "04 - Sports";
+"productCategory.vitaminWater.title" = "05 - Vitamin Water";
+"productCategory.energy.title" = "06 - Energy";
+"productCategory.tea.title" = "07 - Tea";
+"productCategory.water.title" = "08 - Water";
+"productCategory.flavoredWater.title" =  "09 - Flavored Water";
+"productCategory.sparklingWater.title" = "10 - Sparkling Water";
+
+// MARK: - Image Picker Media Source Type
+
+"imagePickerMediaSourceType.photoLibrary.title" = "Photo Library";
+"imagePickerMediaSourceType.camera.title" = "Camera";

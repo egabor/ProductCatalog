@@ -74,7 +74,7 @@ struct ProductDetailsScreen: View {
                     .toolbar {
                         Button(
                             action: viewModel.hideBarcodeScanner,
-                            label: { Image(systemName: ImageConstants.xmark) }
+                            label: { Image.xmark }
                         )
                     }
                 }

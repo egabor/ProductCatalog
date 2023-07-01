@@ -14,7 +14,7 @@
 		625ACC1B2A50C2540024EFE6 /* ProductViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 625ACC1A2A50C2540024EFE6 /* ProductViewData.swift */; };
 		625ACC1D2A50C2800024EFE6 /* ProductSectionViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 625ACC1C2A50C2800024EFE6 /* ProductSectionViewData.swift */; };
 		625ACC1F2A50C29E0024EFE6 /* StringPair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 625ACC1E2A50C29E0024EFE6 /* StringPair.swift */; };
-		625ACC212A50C37D0024EFE6 /* ImageConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 625ACC202A50C37D0024EFE6 /* ImageConstants.swift */; };
+		625ACC212A50C37D0024EFE6 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 625ACC202A50C37D0024EFE6 /* Images.swift */; };
 		625ACC232A50C6BF0024EFE6 /* String+Trimmed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 625ACC222A50C6BF0024EFE6 /* String+Trimmed.swift */; };
 		625ACC262A50CB220024EFE6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 625ACC282A50CB220024EFE6 /* Localizable.strings */; };
 		625ACC2B2A50CB670024EFE6 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 625ACC2A2A50CB670024EFE6 /* Strings.swift */; };
@@ -61,7 +61,7 @@
 		625ACC1A2A50C2540024EFE6 /* ProductViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewData.swift; sourceTree = "<group>"; };
 		625ACC1C2A50C2800024EFE6 /* ProductSectionViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductSectionViewData.swift; sourceTree = "<group>"; };
 		625ACC1E2A50C29E0024EFE6 /* StringPair.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringPair.swift; sourceTree = "<group>"; };
-		625ACC202A50C37D0024EFE6 /* ImageConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageConstants.swift; sourceTree = "<group>"; };
+		625ACC202A50C37D0024EFE6 /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
 		625ACC222A50C6BF0024EFE6 /* String+Trimmed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Trimmed.swift"; sourceTree = "<group>"; };
 		625ACC272A50CB220024EFE6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		625ACC2A2A50CB670024EFE6 /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
@@ -113,6 +113,7 @@
 		625ACC292A50CB5C0024EFE6 /* Constants */ = {
 			isa = PBXGroup;
 			children = (
+				625ACC202A50C37D0024EFE6 /* Images.swift */,
 				625ACC2A2A50CB670024EFE6 /* Strings.swift */,
 			);
 			path = Constants;
@@ -149,7 +150,6 @@
 			isa = PBXGroup;
 			children = (
 				62B621712A4E0109003ACCA6 /* beveragesApp.swift */,
-				625ACC202A50C37D0024EFE6 /* ImageConstants.swift */,
 				625ACC292A50CB5C0024EFE6 /* Constants */,
 				62B621A12A4E0306003ACCA6 /* Resolver+Registry.swift */,
 				62B621A32A4E035E003ACCA6 /* SQLiteHelper.swift */,
@@ -381,7 +381,7 @@
 				62B621C22A4EEC05003ACCA6 /* ProductService.swift in Sources */,
 				625ACC1B2A50C2540024EFE6 /* ProductViewData.swift in Sources */,
 				625ACC2B2A50CB670024EFE6 /* Strings.swift in Sources */,
-				625ACC212A50C37D0024EFE6 /* ImageConstants.swift in Sources */,
+				625ACC212A50C37D0024EFE6 /* Images.swift in Sources */,
 				625ACC192A50C1DB0024EFE6 /* ImagePickerMediaSourceType.swift in Sources */,
 				625ACC172A50AEC30024EFE6 /* String+Levenshtein.swift in Sources */,
 				62B621A22A4E0306003ACCA6 /* Resolver+Registry.swift in Sources */,

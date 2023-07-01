@@ -12,7 +12,11 @@ struct ImagePickerMediaSourceType: Identifiable {
 
     let id: String
     let sourceType: UIImagePickerController.SourceType
-    let displayValue: String
+    let displayValueKey: String
+
+    var displayValue: String {
+        NSLocalizedString(displayValueKey, comment: "")
+    }
 }
 
 extension ImagePickerMediaSourceType {
@@ -20,12 +24,12 @@ extension ImagePickerMediaSourceType {
     static let photoLibrary: Self = .init(
         id: "photoLibrary", // TODO: move to constants
         sourceType: .photoLibrary,
-        displayValue: "Photo Library" // TODO: localize
+        displayValueKey: .imagePickerMediaSourceTypePhotoLibraryTitle
     )
 
     static let camera: Self = .init(
         id: "camera", // TODO: move to constants
         sourceType: .camera,
-        displayValue: "Camera" // TODO: localize
+        displayValueKey: .imagePickerMediaSourceTypeCameraTitle
     )
 }

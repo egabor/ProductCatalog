@@ -43,7 +43,6 @@ extension String {
         }
     }
 
-
     private func levenshtein(sourceString: String, target targetString: String) -> Int {
 
         let source = Array(sourceString.unicodeScalars)

@@ -51,4 +51,23 @@ extension String {
     static let productDetailsScreenScanBarcodeButtonTitle = "productDetails.screen.scanBarcodeButton.title"
     static let productDetailsScreenSectionCategoryTitle = "productDetails.screen.section.category.title"
     static let productDetailsScreenSelectCategoryButtonTitle = "productDetails.screen.selectCategory.title"
+
+    // MARK: - Product Category
+
+    static let productCategoryGeneralTitle = "productCategory.general.title"
+    static let productCategorySparklingTitle = "productCategory.sparkling.title"
+    static let productCategoryCoffeeTitle = "productCategory.coffee.title"
+    static let productCategoryJuiceTitle = "productCategory.juice.title"
+    static let productCategorySportsTitle = "productCategory.sports.title"
+    static let productCategoryVitaminWaterTitle = "productCategory.vitaminWater.title"
+    static let productCategoryEnergyTitle = "productCategory.energy.title"
+    static let productCategoryTeaTitle = "productCategory.tea.title"
+    static let productCategoryWaterTitle = "productCategory.water.title"
+    static let productCategoryFlavoredWaterTitle = "productCategory.flavoredWater.title"
+    static let productCategorySparklingWaterTitle = "productCategory.sparklingWater.title"
+
+    // MARK: - Image Picker Media Source Type
+
+    static let imagePickerMediaSourceTypePhotoLibraryTitle = "imagePickerMediaSourceType.photoLibrary.title"
+    static let imagePickerMediaSourceTypeCameraTitle = "imagePickerMediaSourceType.camera.title"
 }

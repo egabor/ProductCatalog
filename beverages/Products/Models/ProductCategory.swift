@@ -37,29 +37,33 @@ extension ProductCategory {
     }
 
     var displayValue: String {
+        NSLocalizedString(displayValueKey, comment: "")
+    }
+
+    var displayValueKey: String {
         switch self {
             case .general:
-                return "00 - General"
+                return .productCategoryGeneralTitle
             case .sparkling:
-                return "01 - Sparkling"
+                return .productCategorySparklingTitle
             case .coffee:
-                return "02 - Coffee"
+                return .productCategoryCoffeeTitle
             case .juice:
-                return "03 - Juice"
+                return .productCategoryJuiceTitle
             case .sports:
-                return "04 - Sports"
+                return .productCategorySportsTitle
             case .vitaminWater:
-                return "05 - Vitamin Water"
+                return .productCategoryVitaminWaterTitle
             case .energy:
-                return "06 - Energy"
+                return .productCategoryEnergyTitle
             case .tea:
-                return "07 - Tea"
+                return .productCategoryTeaTitle
             case .water:
-                return "08 - Water"
+                return .productCategoryWaterTitle
             case .flavoredWater:
-                return "09 - Flavored Water"
+                return .productCategoryFlavoredWaterTitle
             case .sparklingWater:
-                return "10 - Sparkling Water"
+                return .productCategorySparklingWaterTitle
         }
     }
 

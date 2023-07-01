@@ -46,7 +46,7 @@ struct ProductListScreen: View {
         NavigationLink {
             ProductDetailsScreen()
         } label: {
-            Image(systemName: ImageConstants.plus)
+            Image.plus
         }
         .disabled(viewModel.isEditMode)
     }
@@ -83,6 +83,14 @@ struct ProductListScreen: View {
         })
     }
 
+    func selectionImage(for viewData: ProductViewData) -> Image {
+        if viewModel.selection.contains(viewData) {
+            return .circleWithInset
+        } else {
+            return .circle
+        }
+    }
+
     @ViewBuilder
     func productRow(_ viewData: ProductViewData) -> some View {
         if viewModel.isEditMode {
@@ -96,7 +104,7 @@ struct ProductListScreen: View {
                 },
                 label: {
                     HStack {
-                        Image(systemName: viewModel.selection.contains(viewData) ? ImageConstants.circleWithInset : ImageConstants.circle)
+                       selectionImage(for: viewData)
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(maxWidth: 24, maxHeight: 24)
