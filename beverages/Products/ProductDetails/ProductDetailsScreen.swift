@@ -18,11 +18,19 @@ struct ProductDetailsScreen: View {
     var body: some View {
         content
             .navigationTitle(viewModel.localizedTitle)
+            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                Button(
-                    viewModel.localizedSaveButtonTitle,
-                    action: viewModel.performExport
-                )
+                if viewModel.isEditing {
+                    Button(
+                        viewModel.localizedSaveButtonTitle,
+                        action: viewModel.performExport
+                    )
+                } else {
+                    Button(
+                        viewModel.localizedEditButtonTitle,
+                        action: viewModel.editProduct
+                    )
+                }
             }
             .alert(
                 viewModel.localizedWarningAlertTitle,
@@ -39,6 +47,22 @@ struct ProductDetailsScreen: View {
                     )
                 },
                 message: { Text(viewModel.warningMessage) }
+            )
+            .alert(
+                viewModel.localizedErrorAlertTitle,
+                isPresented: $viewModel.shouldShowErrorAlert,
+                actions: {
+                    Text(viewModel.localizedErrorAlertDismissButtonTitle)
+                },
+                message: { Text(viewModel.errorMessage) }
+            )
+            .alert(
+                viewModel.localizedSuccessAlertTitle,
+                isPresented: $viewModel.shouldShowSuccessAlert,
+                actions: {
+                    Text(viewModel.localizedSuccessAlertDismissButtonTitle)
+                },
+                message: { Text(viewModel.successMessage) }
             )
             .fullScreenCover(isPresented: $viewModel.shouldShowBarcodeScanner) {
                 NavigationView {
@@ -68,49 +92,67 @@ struct ProductDetailsScreen: View {
             }
     }
 
+    @ViewBuilder
     var content: some View {
-        form
-            .scrollDismissesKeyboard(.immediately)
+        if viewModel.isEditing {
+            editingContent
+        } else {
+            displayContent
+        }
     }
 
-    var form: some View {
-        Form {
-            Section(
-                content: {
-                    productImageRow
-                },
-                header: {
-                    Text("Image") // TODO: localize
-                }
-            )
-
-            Section(
-                content: {
-                    productNameTextField
-                },
-                header: {
-                    Text("Name") // TODO: localize
-                }
-            )
-
-            Section(
-                content: {
-                    barcodeInput
-                },
-                header: {
-                    Text("Barcode") // TODO: localize
-                }
-            )
-
-            Section(
-                content: {
-                    categorySelector
-                },
-                header: {
-                    Text("Category") // TODO: localize
-                }
-            )
+    var displayContent: some View {
+        List {
+            sections
         }
+        .listStyle(.inset)
+        .disabled(true)
+    }
+
+    var editingContent: some View {
+        Form {
+            sections
+        }
+        .scrollDismissesKeyboard(.immediately)
+    }
+
+    @ViewBuilder
+    var sections: some View {
+        Section(
+            content: {
+                productImageRow
+            },
+            header: {
+                Text("Image") // TODO: localize
+            }
+        )
+
+        Section(
+            content: {
+                productNameTextField
+            },
+            header: {
+                Text("Name") // TODO: localize
+            }
+        )
+
+        Section(
+            content: {
+                barcodeInput
+            },
+            header: {
+                Text("Barcode") // TODO: localize
+            }
+        )
+
+        Section(
+            content: {
+                categorySelector
+            },
+            header: {
+                Text("Category") // TODO: localize
+            }
+        )
     }
 
     var productImageRow: some View {
@@ -178,12 +220,12 @@ struct ProductDetailsScreen: View {
             },
             label: {
                 HStack {
-                    Spacer()
                     if let category = viewModel.category {
                         Text(category.displayValue)
                     } else {
                         Text("Select Category") // TODO: localize
                     }
+                    Spacer()
                 }
             }
         )

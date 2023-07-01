@@ -62,4 +62,31 @@ extension ProductCategory {
                 return "10 - Sparkling Water"
         }
     }
+
+    var order: Int {
+        switch self {
+            case .general:
+                return 0
+            case .sparkling:
+                return 1
+            case .coffee:
+                return 2
+            case .juice:
+                return 3
+            case .sports:
+                return 4
+            case .vitaminWater:
+                return 5
+            case .energy:
+                return 6
+            case .tea:
+                return 7
+            case .water:
+                return 8
+            case .flavoredWater:
+                return 9
+            case .sparklingWater:
+                return 10
+        }
+    }
 }

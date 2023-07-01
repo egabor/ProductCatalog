@@ -15,7 +15,7 @@ extension Product {
         .init(
             productId: dbProduct.productId,
             imageData: dbProduct.imageData,
-            name: dbProduct.name,
+            name: dbProduct.name ?? "",
             barcode: dbProduct.barcode,
             category: .init(rawValue: dbProduct.category)
         )

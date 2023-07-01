@@ -10,6 +10,8 @@ import Resolver
 import VisionKit
 import Combine
 
+// TODO: move to it's own file
+
 struct ImagePickerMediaSourceType: Identifiable {
 
     let id: String
@@ -20,23 +22,30 @@ struct ImagePickerMediaSourceType: Identifiable {
 extension ImagePickerMediaSourceType {
 
     static let photoLibrary: Self = .init(
-        id: "photoLibrary",
+        id: "photoLibrary", // TODO: move to constants
         sourceType: .photoLibrary,
-        displayValue: "Photo Library"
+        displayValue: "Photo Library" // TODO: localize
     )
 
     static let camera: Self = .init(
-        id: "camera",
+        id: "camera", // TODO: move to constants
         sourceType: .camera,
-        displayValue: "Camera"
+        displayValue: "Camera" // TODO: localize
     )
 }
 
 class ProductDetailsViewModel: ObservableObject {
 
-    enum ExportWarning: Error {
+    enum ExportError: Error { // TODO: localize errors
 
+        case emptyCategory
+        case emptyImage
         case emptyName
+    }
+
+    enum ExportWarning: Error { // TODO: localize warning
+
+        case emptyBarcode
     }
 
     var productId: Int?
@@ -52,14 +61,23 @@ class ProductDetailsViewModel: ObservableObject {
     var warningMessage: String = ""
     @Published var shouldShowWarningAlert: Bool = false
 
+    var errorMessage: String = ""
+    @Published var shouldShowErrorAlert: Bool = false
+
+    var successMessage: String = ""
+    @Published var shouldShowSuccessAlert: Bool = false
+
     @Published var shouldShowBarcodeScanner: Bool = false
     @Published var recognizedVisionItems: [RecognizedItem] = []
+    @Published var isEditing: Bool = false
 
     @Injected private var productService: ProductService
 
     init(product: Product? = nil) {
         if let product = product {
             importData(product)
+        } else {
+            isEditing = true
         }
 
         setupSubscriptions()
@@ -81,8 +99,15 @@ class ProductDetailsViewModel: ObservableObject {
             .assign(to: &$barcode)
     }
 
+    private func validateForErrors() throws {
+
+        if productImage == nil { throw ExportError.emptyImage }
+        if name.isEmpty { throw ExportError.emptyName }
+        if category == nil { throw ExportError.emptyCategory }
+    }
+
     private func validateForWarnings() throws {
-        guard name.isEmpty == false else { throw ExportWarning.emptyName }
+        guard barcode.isEmpty == false else { throw ExportWarning.emptyBarcode }
     }
 
     func showBarcodeScanner() {
@@ -98,8 +123,19 @@ class ProductDetailsViewModel: ObservableObject {
     }
 
     func didSelectImage(_ image: UIImage?) {
+
         imagePickerMediaSource = nil
         productImage = image
+    }
+
+    func showSuccessAlert(with message: String) {
+
+        successMessage = message
+        shouldShowSuccessAlert = true
+    }
+
+    func editProduct() {
+        isEditing = true
     }
 }
 
@@ -110,18 +146,17 @@ extension ProductDetailsViewModel {
     private func importData(_ product: Product) {
 
         productId = product.productId
-        if let imageData = product.imageData {
-            productImage = UIImage(data: imageData)
-        } else {
-            productImage = nil
-        }
-        name = product.name ?? ""
+        productImage = product.image
+        name = product.name
+        barcode = product.barcode ?? ""
         category = product.category
     }
 
     // MARK: - Export
 
     private func export(skipWarnings: Bool = false) throws -> Product {
+
+        try validateForErrors()
 
         if skipWarnings == false {
             try validateForWarnings()
@@ -135,32 +170,61 @@ extension ProductDetailsViewModel {
         )
     }
 
+    private func save(skipWarnings: Bool = false) throws {
+        let productToSave = try export(skipWarnings: true) // collect the data from the form
+        guard let savedProduct = try? productService.save(product: productToSave) else { return } // save and load back the Product from the DB
+        importData(savedProduct)
+        showSuccessAlert(with: localizedSaveSuccessAlertMessage)
+        isEditing = false
+    }
+
     func performExport() {
 
         do {
-            let productToSave = try export() // collect the data from the form
-            let savedProduct = try productService.save(product: productToSave) // save and load back the Product from the DB
-            importData(savedProduct)
-        } catch let error as ExportWarning {
-            print("\(error)")
-            warningMessage = error.localizedDescription
-            shouldShowWarningAlert = true
+            try save(skipWarnings: false)
+        } catch let warning as ExportWarning {
+            handle(warning)
+        } catch let error as ExportError {
+            handle(error)
         } catch {
-            print("\(error)")
+            handle(error)
         }
     }
 
     func performExportAnyway() {
 
         do {
-            let productToSave = try export(skipWarnings: true)
-            guard let savedProduct = try? productService.save(product: productToSave) else { return }
-            importData(savedProduct)
-        } catch let error as ExportWarning {
-            print("\(error)")
+            try save(skipWarnings: true)
+        } catch _ as ExportWarning {
+            // Nothing to handle here. Warning ignored by the user.
+        } catch let error as ExportError {
+            handle(error)
         } catch {
-            print("\(error)")
+            handle(error)
         }
+    }
+}
+
+// MARK: - Exception Handlers
+
+extension ProductDetailsViewModel {
+
+    private func handle(_ warning: ExportWarning) {
+
+        print("\(warning)")
+        warningMessage = warning.localizedDescription
+        shouldShowWarningAlert = true
+    }
+
+    private func handle(_ error: ExportError) {
+
+        print("\(error)")
+        errorMessage = error.localizedDescription
+        shouldShowErrorAlert = true
+    }
+
+    private func handle(_ error: Error) {
+        print("Unhandled error: \(error)")
     }
 }
 
@@ -170,7 +234,12 @@ extension ProductDetailsViewModel {
 
     var localizedTitle: String {
         guard productId != nil else { return "New Product" } // TODO: Localize
+        guard isEditing else { return "Product Details" } // TODO: Localize
         return "Edit Product" // TODO: Localize
+    }
+
+    var localizedEditButtonTitle: String {
+        "Edit" // TODO: Localize
     }
 
     var localizedSaveButtonTitle: String {
@@ -187,5 +256,25 @@ extension ProductDetailsViewModel {
 
     var localizedWarningAlertSaveAnywayButtonTitle: String {
         "Save anyway" // TODO: Localize
+    }
+
+    var localizedErrorAlertTitle: String {
+        "Error" // TODO: Localize
+    }
+
+    var localizedErrorAlertDismissButtonTitle: String {
+        "Dismiss" // TODO: Localize
+    }
+
+    var localizedSuccessAlertTitle: String {
+        "Success" // TODO: Localize
+    }
+
+    var localizedSaveSuccessAlertMessage: String {
+        "Product saved." // TODO: Localize
+    }
+
+    var localizedSuccessAlertDismissButtonTitle: String {
+        "Dismiss" // TODO: Localize
     }
 }

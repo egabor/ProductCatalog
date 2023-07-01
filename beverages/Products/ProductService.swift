@@ -20,12 +20,20 @@ class ProductService {
         return Product.from(savedProduct)
     }
 
+    // TODO: revise (out of use currently)
     func deleteProduct(by id: Int) throws {
         try DBProduct.delete(by: id)
         dataSetUpdate.send(())
     }
 
-    func loadAll() throws -> [Product] {
+    func deleteProducts(by ids: [Int]) throws {
+        try ids.forEach { id in
+            try DBProduct.delete(by: id)
+        }
+        dataSetUpdate.send(())
+    }
+
+    func loadAll() -> [Product] {
         DBProduct.fetchAll().map { Product.from($0) }
     }
 }
