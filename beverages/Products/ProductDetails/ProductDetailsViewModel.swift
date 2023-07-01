@@ -12,18 +12,6 @@ import Combine
 
 class ProductDetailsViewModel: ObservableObject {
 
-    enum ExportError: Error { // TODO: localize errors
-
-        case emptyCategory
-        case emptyImage
-        case emptyName
-    }
-
-    enum ExportWarning: Error { // TODO: localize warning
-
-        case emptyBarcode
-    }
-
     var productId: Int?
     var mediaSourceTypes: [ImagePickerMediaSourceType] = [.photoLibrary, .camera]
     @Published var imagePickerMediaSource: ImagePickerMediaSourceType?
@@ -147,7 +135,7 @@ extension ProductDetailsViewModel {
     }
 
     private func save(skipWarnings: Bool = false) throws {
-        let productToSave = try export(skipWarnings: true) // collect the data from the form
+        let productToSave = try export(skipWarnings: skipWarnings) // collect the data from the form
         guard let savedProduct = try? productService.save(product: productToSave) else { return } // save and load back the Product from the DB
         importData(savedProduct)
         showSuccessAlert(with: localizedSaveSuccessAlertMessage)
@@ -209,48 +197,80 @@ extension ProductDetailsViewModel {
 extension ProductDetailsViewModel {
 
     var localizedTitle: String {
-        guard productId != nil else { return "New Product" } // TODO: Localize
-        guard isEditing else { return "Product Details" } // TODO: Localize
-        return "Edit Product" // TODO: Localize
+        guard productId != nil else { return .productDetailsScreenCreateTitle }
+        guard isEditing else { return .productDetailsScreenTitle }
+        return .productDetailsScreenEditTitle
     }
 
     var localizedEditButtonTitle: String {
-        "Edit" // TODO: Localize
+        .productDetailsScreenEditButtonTitle
     }
 
     var localizedSaveButtonTitle: String {
-        "Save" // TODO: Localize
+        .productDetailsScreenSaveButtonTitle
     }
 
     var localizedWarningAlertTitle: String {
-        "Warning" // TODO: Localize
+        .productDetailsScreenAlertWarningTitle
     }
 
     var localizedWarningAlertDismissButtonTitle: String {
-        "Dismiss" // TODO: Localize
+        .productDetailsScreenAlertWarningDismissButtonTitle
     }
 
     var localizedWarningAlertSaveAnywayButtonTitle: String {
-        "Save anyway" // TODO: Localize
+        .productDetailsScreenAlertWarningSaveAnywayButtonTitle
     }
 
     var localizedErrorAlertTitle: String {
-        "Error" // TODO: Localize
+        .productDetailsScreenAlertErrorTitle
     }
 
     var localizedErrorAlertDismissButtonTitle: String {
-        "Dismiss" // TODO: Localize
+        .productDetailsScreenAlertErrorDismissButtonTitle
     }
 
     var localizedSuccessAlertTitle: String {
-        "Success" // TODO: Localize
+        .productDetailsScreenAlertSuccessTitle
     }
 
     var localizedSaveSuccessAlertMessage: String {
-        "Product saved." // TODO: Localize
+        .productDetailsScreenAlertProductSavedMessage
     }
 
     var localizedSuccessAlertDismissButtonTitle: String {
-        "Dismiss" // TODO: Localize
+        .productDetailsScreenAlertSuccessDismissButtonTitle
+    }
+
+    var localizedImageSectionTitle: String {
+        .productDetailsScreenSectionImageTitle
+    }
+
+    var localizedSelectImageButtonTitle: String {
+        .productDetailsScreenSelectImageButtonTitle
+    }
+
+    var localizedNameSectionTitle: String {
+        .productDetailsScreenSectionNameTitle
+    }
+
+    var localizedNameTextFieldPlaceholder: String {
+        .productDetailsScreenNameTextFieldPlaceholder
+    }
+
+    var localizedBarcodeSectionTitle: String {
+        .productDetailsScreenSectionBarcodeTitle
+    }
+
+    var localizedScanBarcodeButtonTitle: String {
+        .productDetailsScreenScanBarcodeButtonTitle
+    }
+
+    var localizedCategorySectionTitle: String {
+        .productDetailsScreenSectionCategoryTitle
+    }
+
+    var localizedSelectCategoryButtonTitle: String {
+        .productDetailsScreenSelectCategoryButtonTitle
     }
 }

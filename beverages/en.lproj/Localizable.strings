@@ -1,0 +1,44 @@
+/* 
+  Localizable.strings
+  beverages
+
+  Created by Eszenyi Gábor on 2023. 07. 01..
+  
+*/
+
+// MARK: - Product List
+
+"productList.screen.title" = "Products";
+"productList.screen.editButton.title" = "Edit";
+"productList.screen.doneButton.title" = "Done";
+"productList.screen.deleteButton.title" = "Delete";
+"productList.screen.deleteWithCountButton.title" = "Delete (%d)";
+"productList.screen.emptyList.title" = "Products";
+
+// MARK: - Product Details
+
+"productDetails.screen.title" = "Product Details";
+"productDetails.screen.create.title" = "New Product";
+"productDetails.screen.edit.title" = "Edit Product";
+"productDetails.screen.editButton.title" = "Edit";
+"productDetails.screen.saveButton.title" = "Save";
+"productDetails.screen.alert.warning.title" = "Warning";
+"productDetails.screen.alert.warning.barcodeIsEmpty.message" = "Barcode is empty. Do you want to continue?";
+"productDetails.screen.alert.warning.dismissButton.title" = "Dismiss";
+"productDetails.screen.alert.warning.saveAnywayButton.title" = "Save Anyway";
+"productDetails.screen.alert.error.title" = "Error";
+"productDetails.screen.alert.error.imageIsEmpty.message" = "Image cannot be empty.";
+"productDetails.screen.alert.error.nameIsEmpty.message" = "Name cannot be empty.";
+"productDetails.screen.alert.error.categoryIsEmpty.message" = "Category cannot be empty.";
+"productDetails.screen.alert.error.dismissButton.title" = "Dismiss";
+"productDetails.screen.alert.success.title" = "Success";
+"productDetails.screen.alert.success.productSaved.message" = "Product saved.";
+"productDetails.screen.alert.success.dismissButton.title" = "Dismiss";
+"productDetails.screen.section.image.title" = "Image";
+"productDetails.screen.selectImageButton.title" = "Select Image";
+"productDetails.screen.section.name.title" = "Name";
+"productDetails.screen.nameTextField.placeholder" = "Name";
+"productDetails.screen.section.barcode.title" = "Barcode";
+"productDetails.screen.scanBarcodeButton.title" = "Scan";
+"productDetails.screen.section.category.title" = "Category";
+"productDetails.screen.selectCategory.title" = "Select Category";

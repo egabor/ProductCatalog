@@ -65,7 +65,7 @@ class ProductListViewModel: ObservableObject {
         levenshteinDistances = []
         let names = Set(products.map { $0.name }).sorted()
         for i in 0 ..< names.count - 1 {
-            for j in i+1 ..< names.count {
+            for j in i + 1 ..< names.count {
                 if i == j { continue }
                 let nameA = names[i]
                 let nameB = names[j]
@@ -83,12 +83,17 @@ class ProductListViewModel: ObservableObject {
         levenshteinDistances.first { $0.pair.contains(name) }?.pair.pair(of: name)
     }
 
-    func delete(_ productsToDelete: Set<ProductViewData>) {
-        try? productService.deleteProducts(by: productsToDelete.map { $0.id })
+    func deleteSelected() {
+        try? productService.deleteProducts(by: selection.map { $0.id })
+        selection.removeAll()
     }
 
     func product(for productId: Int) -> Product? {
         products.first(where: { $0.productId == productId })
+    }
+
+    func toggleEditMode() {
+        isEditMode.toggle()
     }
 
     private func setupSubscriptions() {
@@ -106,25 +111,25 @@ class ProductListViewModel: ObservableObject {
 extension ProductListViewModel {
 
     var localizedTitle: String {
-        "Products" // TODO: Localize
+        .productListScreenTitle
     }
 
     var localizedEditButtonTitle: String {
         if isEditMode {
-            return "Save" // TODO: Localize
+            return .productListScreenDoneButtonTitle
         }
-        return "Edit"
+        return .productListScreenEditButtonTitle
     }
 
     var localizedDeleteButtonTitle: String {
         if selection.isEmpty {
-            return "Delete" // TODO: Localize
+            return NSLocalizedString(.productListScreenDeleteButtonTitle, comment: "")
         } else {
-            return "Delete (\(selection.count))" // TODO: Localize
+            return String(format: NSLocalizedString(.productListScreenDeleteWithCountButtonTitle, comment: ""), selection.count)
         }
     }
 
     var localizedEmptyListTitle: String {
-        "The list is empty. Use the + button to add new products." // TODO: Localize
+        .productListScreenEmptyListTitle
     }
 }

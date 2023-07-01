@@ -13,7 +13,7 @@ struct ProductListScreen: View {
 
     var body: some View {
         content
-            .navigationTitle(viewModel.localizedTitle)
+            .navigationTitle(LocalizedStringKey(viewModel.localizedTitle))
             .toolbar{
                 ToolbarItem(placement: .navigationBarLeading) {
                     addNewProductButton
@@ -24,10 +24,7 @@ struct ProductListScreen: View {
                     ToolbarItemGroup(placement: .bottomBar) {
                         Button(
                             role: .destructive,
-                            action: {
-                                    viewModel.delete(viewModel.selection)
-                                    viewModel.selection.removeAll()
-                            },
+                            action: viewModel.deleteSelected,
                             label: {
                                 Text(viewModel.localizedDeleteButtonTitle)
                             }
@@ -64,18 +61,17 @@ struct ProductListScreen: View {
     }
 
     var emptyList: some View {
-        Text(viewModel.localizedEmptyListTitle)
+        Text(LocalizedStringKey(viewModel.localizedEmptyListTitle))
     }
 
     var productList: some View {
         List(viewModel.productSections) { productSection($0) }
-            .listStyle(.inset)
+            .listStyle(.plain)
             .toolbar {
-                Button(action: {
-                    withAnimation {
-                        viewModel.isEditMode.toggle()
-                    }
-                }, label: { Text(viewModel.localizedEditButtonTitle) })
+                Button(
+                    action: viewModel.toggleEditMode,
+                    label: { Text(LocalizedStringKey(viewModel.localizedEditButtonTitle)) }
+                )
             }
     }
 

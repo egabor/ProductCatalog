@@ -17,52 +17,52 @@ struct ProductDetailsScreen: View {
 
     var body: some View {
         content
-            .navigationTitle(viewModel.localizedTitle)
+            .navigationTitle(LocalizedStringKey(viewModel.localizedTitle))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 if viewModel.isEditing {
                     Button(
-                        viewModel.localizedSaveButtonTitle,
+                        LocalizedStringKey(viewModel.localizedSaveButtonTitle),
                         action: viewModel.performExport
                     )
                 } else {
                     Button(
-                        viewModel.localizedEditButtonTitle,
+                        LocalizedStringKey(viewModel.localizedEditButtonTitle),
                         action: viewModel.editProduct
                     )
                 }
             }
             .alert(
-                viewModel.localizedWarningAlertTitle,
+                LocalizedStringKey(viewModel.localizedWarningAlertTitle),
                 isPresented: $viewModel.shouldShowWarningAlert,
                 actions: {
                     Button(
                         role: .cancel,
                         action: {},
-                        label: { Text(viewModel.localizedWarningAlertDismissButtonTitle) }
+                        label: { Text(LocalizedStringKey(viewModel.localizedWarningAlertDismissButtonTitle)) }
                     )
                     Button(
                         action: viewModel.performExportAnyway,
-                        label: { Text(viewModel.localizedWarningAlertSaveAnywayButtonTitle) }
+                        label: { Text(LocalizedStringKey(viewModel.localizedWarningAlertSaveAnywayButtonTitle)) }
                     )
                 },
-                message: { Text(viewModel.warningMessage) }
+                message: { Text(LocalizedStringKey(viewModel.warningMessage)) }
             )
             .alert(
-                viewModel.localizedErrorAlertTitle,
+                LocalizedStringKey(viewModel.localizedErrorAlertTitle),
                 isPresented: $viewModel.shouldShowErrorAlert,
                 actions: {
-                    Text(viewModel.localizedErrorAlertDismissButtonTitle)
+                    Text(LocalizedStringKey(viewModel.localizedErrorAlertDismissButtonTitle))
                 },
-                message: { Text(viewModel.errorMessage) }
+                message: { Text(LocalizedStringKey(viewModel.errorMessage)) }
             )
             .alert(
-                viewModel.localizedSuccessAlertTitle,
+                LocalizedStringKey(viewModel.localizedSuccessAlertTitle),
                 isPresented: $viewModel.shouldShowSuccessAlert,
                 actions: {
-                    Text(viewModel.localizedSuccessAlertDismissButtonTitle)
+                    Text(LocalizedStringKey(viewModel.localizedSuccessAlertDismissButtonTitle))
                 },
-                message: { Text(viewModel.successMessage) }
+                message: { Text(LocalizedStringKey(viewModel.successMessage)) }
             )
             .fullScreenCover(isPresented: $viewModel.shouldShowBarcodeScanner) {
                 NavigationView {
@@ -105,7 +105,7 @@ struct ProductDetailsScreen: View {
         List {
             sections
         }
-        .listStyle(.inset)
+        .listStyle(.plain)
         .disabled(true)
     }
 
@@ -123,7 +123,7 @@ struct ProductDetailsScreen: View {
                 productImageRow
             },
             header: {
-                Text("Image") // TODO: localize
+                Text(LocalizedStringKey(viewModel.localizedImageSectionTitle))
             }
         )
 
@@ -132,7 +132,7 @@ struct ProductDetailsScreen: View {
                 productNameTextField
             },
             header: {
-                Text("Name") // TODO: localize
+                Text(LocalizedStringKey(viewModel.localizedNameSectionTitle))
             }
         )
 
@@ -141,7 +141,7 @@ struct ProductDetailsScreen: View {
                 barcodeInput
             },
             header: {
-                Text("Barcode") // TODO: localize
+                Text(LocalizedStringKey(viewModel.localizedBarcodeSectionTitle))
             }
         )
 
@@ -150,7 +150,7 @@ struct ProductDetailsScreen: View {
                 categorySelector
             },
             header: {
-                Text("Category") // TODO: localize
+                Text(LocalizedStringKey(viewModel.localizedCategorySectionTitle))
             }
         )
     }
@@ -163,36 +163,35 @@ struct ProductDetailsScreen: View {
                     .aspectRatio(contentMode: .fit)
                     .frame(maxWidth: 250, maxHeight: 250, alignment: .center) // TODO: move to config
             }
-//            else if let image = UIImage(contentsOfFile: viewModel.imagePath) {
-//                Image(uiImage: image)
-//                    .resizable()
-//                    .aspectRatio(contentMode: .fit)
-//                    .frame(maxWidth: 250, maxHeight: 250, alignment: .center) // TODO: move to config
-//            }
-            HStack {
-                Menu(
-                    content: {
-                        ForEach(viewModel.mediaSourceTypes) { sourceType in
-                            Button(
-                                action: { viewModel.selectImage(for: sourceType) },
-                                label: { Text(sourceType.displayValue) }
-                            )
+            if viewModel.isEditing {
+                HStack {
+                    Menu(
+                        content: {
+                            ForEach(viewModel.mediaSourceTypes) { sourceType in
+                                Button(
+                                    action: { viewModel.selectImage(for: sourceType) },
+                                    label: { Text(sourceType.displayValue) }
+                                )
+                            }
+                        },
+                        label: {
+                            Text(LocalizedStringKey(viewModel.localizedSelectImageButtonTitle))
+                                .frame(maxWidth: .infinity)
                         }
-                    },
-                    label: {
-                        Text("Select Image") // TODO: localize
-                            .frame(maxWidth: .infinity) // TODO: move to config
-                    }
-                )
-                // TODO: Clear button
+                    )
+                    // TODO: Clear button
+                }
             }
         }
     }
 
     var productNameTextField: some View {
         TextField(
-            "Name", // TODO: localize
-            text: $viewModel.name
+            LocalizedStringKey(viewModel.localizedNameTextFieldPlaceholder),
+            text: .init(
+                get: { viewModel.name.trimmed },
+                set: { viewModel.name = $0.trimmed }
+            )
         )
         .disableAutocorrection(true)
     }
@@ -201,10 +200,12 @@ struct ProductDetailsScreen: View {
         HStack {
             Text(viewModel.barcode)
             Spacer()
-            Button(
-                action: viewModel.showBarcodeScanner,
-                label: { Text("Scan") } // TODO: localize
-            )
+            if viewModel.isEditing {
+                Button(
+                    action: viewModel.showBarcodeScanner,
+                    label: { Text(LocalizedStringKey(viewModel.localizedScanBarcodeButtonTitle)) }
+                )
+            }
         }
     }
 
@@ -223,7 +224,7 @@ struct ProductDetailsScreen: View {
                     if let category = viewModel.category {
                         Text(category.displayValue)
                     } else {
-                        Text("Select Category") // TODO: localize
+                        Text(LocalizedStringKey(viewModel.localizedSelectCategoryButtonTitle))
                     }
                     Spacer()
                 }
