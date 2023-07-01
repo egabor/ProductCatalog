@@ -10,30 +10,6 @@ import Resolver
 import VisionKit
 import Combine
 
-// TODO: move to it's own file
-
-struct ImagePickerMediaSourceType: Identifiable {
-
-    let id: String
-    let sourceType: UIImagePickerController.SourceType
-    let displayValue: String
-}
-
-extension ImagePickerMediaSourceType {
-
-    static let photoLibrary: Self = .init(
-        id: "photoLibrary", // TODO: move to constants
-        sourceType: .photoLibrary,
-        displayValue: "Photo Library" // TODO: localize
-    )
-
-    static let camera: Self = .init(
-        id: "camera", // TODO: move to constants
-        sourceType: .camera,
-        displayValue: "Camera" // TODO: localize
-    )
-}
-
 class ProductDetailsViewModel: ObservableObject {
 
     enum ExportError: Error { // TODO: localize errors
