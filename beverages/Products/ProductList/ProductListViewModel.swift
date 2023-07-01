@@ -84,9 +84,7 @@ class ProductListViewModel: ObservableObject {
     }
 
     func delete(_ productsToDelete: Set<ProductViewData>) {
-        productsToDelete.forEach { [weak self] product in
-            try? self?.productService.deleteProduct(by: product.id)
-        }
+        try? productService.deleteProducts(by: productsToDelete.map { $0.id })
     }
 
     func product(for productId: Int) -> Product? {
