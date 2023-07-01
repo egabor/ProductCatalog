@@ -15,7 +15,7 @@ extension DBProduct {
     static func from(_ product: Product) -> DBProduct {
         .init(
             productId: product.productId,
-            imagePath: product.imagePath,
+            imageData: product.imageData,
             name: product.name,
             barcode: product.barcode,
             category: product.category?.rawValue
@@ -30,7 +30,7 @@ extension DBProduct {
     static func from(_ row: Row) -> DBProduct {
         .init(
             productId: row[Expression<Int    >(CodingKeys.productId.rawValue)],
-            imagePath: row[Expression<String?>(CodingKeys.imagePath.rawValue)],
+            imageData: row[Expression<Data?  >(CodingKeys.imageData.rawValue)],
             name:      row[Expression<String?>(CodingKeys.name.rawValue)],
             barcode:   row[Expression<String?>(CodingKeys.barcode.rawValue)],
             category:  row[Expression<String?>(CodingKeys.category.rawValue)]

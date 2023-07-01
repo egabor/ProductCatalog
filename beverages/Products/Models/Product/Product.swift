@@ -11,7 +11,7 @@ import Foundation
 struct Product {
 
     let productId: Int?
-    let imagePath: String?
+    let imageData: Data?
     let name: String?
     let barcode: String?
     let category: ProductCategory?

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		625ACC132A503A3D0024EFE6 /* products.db in Resources */ = {isa = PBXBuildFile; fileRef = 625ACC122A503A3D0024EFE6 /* products.db */; };
 		62B621722A4E0109003ACCA6 /* beveragesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B621712A4E0109003ACCA6 /* beveragesApp.swift */; };
 		62B621762A4E010B003ACCA6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62B621752A4E010B003ACCA6 /* Assets.xcassets */; };
 		62B621792A4E010B003ACCA6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62B621782A4E010B003ACCA6 /* Preview Assets.xcassets */; };
@@ -23,11 +24,11 @@
 		62B621B62A4ECDA9003ACCA6 /* Product+Parsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B621B52A4ECDA9003ACCA6 /* Product+Parsing.swift */; };
 		62B621B82A4ED02E003ACCA6 /* DBProduct+Parsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B621B72A4ED02E003ACCA6 /* DBProduct+Parsing.swift */; };
 		62B621BA2A4ED249003ACCA6 /* DBProduct+SQLite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B621B92A4ED249003ACCA6 /* DBProduct+SQLite.swift */; };
-		62B621BC2A4EE072003ACCA6 /* products.db in Resources */ = {isa = PBXBuildFile; fileRef = 62B621BB2A4EE072003ACCA6 /* products.db */; };
 		62B621BE2A4EE112003ACCA6 /* ProductDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B621BD2A4EE112003ACCA6 /* ProductDetailsViewModel.swift */; };
 		62B621C02A4EEBCA003ACCA6 /* Resolver+Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B621BF2A4EEBCA003ACCA6 /* Resolver+Product.swift */; };
 		62B621C22A4EEC05003ACCA6 /* ProductService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B621C12A4EEC05003ACCA6 /* ProductService.swift */; };
 		62B621C52A4F0910003ACCA6 /* ScannerScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B621C42A4F0910003ACCA6 /* ScannerScreen.swift */; };
+		62B621C82A4F6B93003ACCA6 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B621C72A4F6B93003ACCA6 /* ImagePicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		625ACC122A503A3D0024EFE6 /* products.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = products.db; sourceTree = "<group>"; };
 		62B6216E2A4E0109003ACCA6 /* beverages.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = beverages.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		62B621712A4E0109003ACCA6 /* beveragesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = beveragesApp.swift; sourceTree = "<group>"; };
 		62B621752A4E010B003ACCA6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -57,11 +59,11 @@
 		62B621B52A4ECDA9003ACCA6 /* Product+Parsing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Product+Parsing.swift"; sourceTree = "<group>"; };
 		62B621B72A4ED02E003ACCA6 /* DBProduct+Parsing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DBProduct+Parsing.swift"; sourceTree = "<group>"; };
 		62B621B92A4ED249003ACCA6 /* DBProduct+SQLite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DBProduct+SQLite.swift"; sourceTree = "<group>"; };
-		62B621BB2A4EE072003ACCA6 /* products.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = products.db; sourceTree = "<group>"; };
 		62B621BD2A4EE112003ACCA6 /* ProductDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsViewModel.swift; sourceTree = "<group>"; };
 		62B621BF2A4EEBCA003ACCA6 /* Resolver+Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Resolver+Product.swift"; sourceTree = "<group>"; };
 		62B621C12A4EEC05003ACCA6 /* ProductService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductService.swift; sourceTree = "<group>"; };
 		62B621C42A4F0910003ACCA6 /* ScannerScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerScreen.swift; sourceTree = "<group>"; };
+		62B621C72A4F6B93003ACCA6 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,7 +112,7 @@
 				62B621A32A4E035E003ACCA6 /* SQLiteHelper.swift */,
 				62B621A52A4E07C1003ACCA6 /* Products */,
 				62B621752A4E010B003ACCA6 /* Assets.xcassets */,
-				62B621BB2A4EE072003ACCA6 /* products.db */,
+				625ACC122A503A3D0024EFE6 /* products.db */,
 				62B621772A4E010B003ACCA6 /* Preview Content */,
 			);
 			path = beverages;
@@ -135,6 +137,7 @@
 		62B621A52A4E07C1003ACCA6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
+				62B621C62A4F6B82003ACCA6 /* ImagePicker */,
 				62B621C32A4F08F5003ACCA6 /* Scanner */,
 				62B621BF2A4EEBCA003ACCA6 /* Resolver+Product.swift */,
 				62B621C12A4EEC05003ACCA6 /* ProductService.swift */,
@@ -197,6 +200,14 @@
 				62B621C42A4F0910003ACCA6 /* ScannerScreen.swift */,
 			);
 			path = Scanner;
+			sourceTree = "<group>";
+		};
+		62B621C62A4F6B82003ACCA6 /* ImagePicker */ = {
+			isa = PBXGroup;
+			children = (
+				62B621C72A4F6B93003ACCA6 /* ImagePicker.swift */,
+			);
+			path = ImagePicker;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -289,7 +300,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				62B621792A4E010B003ACCA6 /* Preview Assets.xcassets in Resources */,
-				62B621BC2A4EE072003ACCA6 /* products.db in Resources */,
+				625ACC132A503A3D0024EFE6 /* products.db in Resources */,
 				62B621762A4E010B003ACCA6 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -321,6 +332,7 @@
 				62B621C52A4F0910003ACCA6 /* ScannerScreen.swift in Sources */,
 				62B621AE2A4E086D003ACCA6 /* DBProduct.swift in Sources */,
 				62B621C02A4EEBCA003ACCA6 /* Resolver+Product.swift in Sources */,
+				62B621C82A4F6B93003ACCA6 /* ImagePicker.swift in Sources */,
 				62B621B42A4E0D11003ACCA6 /* ProductCategory.swift in Sources */,
 				62B621BE2A4EE112003ACCA6 /* ProductDetailsViewModel.swift in Sources */,
 			);
@@ -471,6 +483,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "We need access to your Camera to enable barcode scanning.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We nedd access to your Photo Library to set product images.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -501,6 +514,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "We need access to your Camera to enable barcode scanning.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We nedd access to your Photo Library to set product images.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

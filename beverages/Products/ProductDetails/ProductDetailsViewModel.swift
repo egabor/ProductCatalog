@@ -10,6 +10,28 @@ import Resolver
 import VisionKit
 import Combine
 
+struct ImagePickerMediaSourceType: Identifiable {
+
+    let id: String
+    let sourceType: UIImagePickerController.SourceType
+    let displayValue: String
+}
+
+extension ImagePickerMediaSourceType {
+
+    static let photoLibrary: Self = .init(
+        id: "photoLibrary",
+        sourceType: .photoLibrary,
+        displayValue: "Photo Library"
+    )
+
+    static let camera: Self = .init(
+        id: "camera",
+        sourceType: .camera,
+        displayValue: "Camera"
+    )
+}
+
 class ProductDetailsViewModel: ObservableObject {
 
     enum ExportWarning: Error {
@@ -18,7 +40,10 @@ class ProductDetailsViewModel: ObservableObject {
     }
 
     var productId: Int?
-    @Published var imagePath: String = ""
+    var mediaSourceTypes: [ImagePickerMediaSourceType] = [.photoLibrary, .camera]
+    @Published var imagePickerMediaSource: ImagePickerMediaSourceType?
+    @Published var productImage: UIImage?
+
     @Published var name: String = ""
     @Published var barcode: String = ""
     @Published var category: ProductCategory?
@@ -67,6 +92,15 @@ class ProductDetailsViewModel: ObservableObject {
     func hideBarcodeScanner() {
         shouldShowBarcodeScanner = false
     }
+
+    func selectImage(for sourceType: ImagePickerMediaSourceType) {
+        imagePickerMediaSource = sourceType
+    }
+
+    func didSelectImage(_ image: UIImage?) {
+        imagePickerMediaSource = nil
+        productImage = image
+    }
 }
 
 extension ProductDetailsViewModel {
@@ -76,7 +110,11 @@ extension ProductDetailsViewModel {
     private func importData(_ product: Product) {
 
         productId = product.productId
-        imagePath = product.imagePath ?? ""
+        if let imageData = product.imageData {
+            productImage = UIImage(data: imageData)
+        } else {
+            productImage = nil
+        }
         name = product.name ?? ""
         category = product.category
     }
@@ -90,7 +128,7 @@ extension ProductDetailsViewModel {
         }
         return .init(
             productId: productId,
-            imagePath: imagePath,
+            imageData: productImage?.jpegData(compressionQuality: 0.6),
             name: name,
             barcode: barcode,
             category: category

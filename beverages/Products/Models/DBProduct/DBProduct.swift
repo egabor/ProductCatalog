@@ -11,7 +11,7 @@ import Foundation
 struct DBProduct {
 
     let productId: Int?
-    let imagePath: String?
+    let imageData: Data?
     let name: String?
     let barcode: String?
     let category: String?
@@ -22,7 +22,7 @@ extension DBProduct {
     enum CodingKeys: String, CodingKey {
 
         case productId
-        case imagePath
+        case imageData
         case name
         case barcode
         case category

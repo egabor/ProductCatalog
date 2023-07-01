@@ -41,7 +41,7 @@ extension DBProduct {
         if let productId = productId {
             setters.append(Expression<Int>(CodingKeys.productId.rawValue) <- productId)
         }
-        setters.append(Expression<String?>(CodingKeys.imagePath.rawValue) <- imagePath)
+        setters.append(Expression<Data?  >(CodingKeys.imageData.rawValue) <- imageData)
         setters.append(Expression<String?>(CodingKeys.name.rawValue)      <- name)
         setters.append(Expression<String?>(CodingKeys.barcode.rawValue)   <- barcode)
         setters.append(Expression<String?>(CodingKeys.category.rawValue)  <- category)

@@ -50,11 +50,15 @@ struct ProductDetailsScreen: View {
                     .toolbar {
                         Button(
                             action: viewModel.hideBarcodeScanner,
-                            label: { Image(systemName: "xmark") }
+                            label: { Image(systemName: "xmark") } // TODO: move to constants
                         )
                     }
                 }
             }
+            .fullScreenCover(
+                item: $viewModel.imagePickerMediaSource,
+                content: imageSelector
+            )
             .onReceive(viewModel.$barcode) { barcode in
                 guard barcode.isEmpty == false else { return }
                 let feedbackGenerator = UINotificationFeedbackGenerator()
@@ -73,10 +77,19 @@ struct ProductDetailsScreen: View {
         Form {
             Section(
                 content: {
+                    productImageRow
+                },
+                header: {
+                    Text("Image") // TODO: localize
+                }
+            )
+
+            Section(
+                content: {
                     productNameTextField
                 },
                 header: {
-                    Text("Name")
+                    Text("Name") // TODO: localize
                 }
             )
 
@@ -85,7 +98,7 @@ struct ProductDetailsScreen: View {
                     barcodeInput
                 },
                 header: {
-                    Text("Barcode")
+                    Text("Barcode") // TODO: localize
                 }
             )
 
@@ -94,15 +107,49 @@ struct ProductDetailsScreen: View {
                     categorySelector
                 },
                 header: {
-                    Text("Category")
+                    Text("Category") // TODO: localize
                 }
             )
         }
     }
 
+    var productImageRow: some View {
+        VStack {
+            if let image = viewModel.productImage {
+                Image(uiImage: image)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(maxWidth: 250, maxHeight: 250, alignment: .center) // TODO: move to config
+            }
+//            else if let image = UIImage(contentsOfFile: viewModel.imagePath) {
+//                Image(uiImage: image)
+//                    .resizable()
+//                    .aspectRatio(contentMode: .fit)
+//                    .frame(maxWidth: 250, maxHeight: 250, alignment: .center) // TODO: move to config
+//            }
+            HStack {
+                Menu(
+                    content: {
+                        ForEach(viewModel.mediaSourceTypes) { sourceType in
+                            Button(
+                                action: { viewModel.selectImage(for: sourceType) },
+                                label: { Text(sourceType.displayValue) }
+                            )
+                        }
+                    },
+                    label: {
+                        Text("Select Image") // TODO: localize
+                            .frame(maxWidth: .infinity) // TODO: move to config
+                    }
+                )
+                // TODO: Clear button
+            }
+        }
+    }
+
     var productNameTextField: some View {
         TextField(
-            "Name",
+            "Name", // TODO: localize
             text: $viewModel.name
         )
         .disableAutocorrection(true)
@@ -114,7 +161,7 @@ struct ProductDetailsScreen: View {
             Spacer()
             Button(
                 action: viewModel.showBarcodeScanner,
-                label: { Text("Scan") }
+                label: { Text("Scan") } // TODO: localize
             )
         }
     }
@@ -135,11 +182,22 @@ struct ProductDetailsScreen: View {
                     if let category = viewModel.category {
                         Text(category.displayValue)
                     } else {
-                        Text("Select Category")
+                        Text("Select Category") // TODO: localize
                     }
                 }
             }
         )
+    }
+
+    @ViewBuilder
+    func imageSelector(_ sourceType: ImagePickerMediaSourceType?) -> some View {
+        if let sourceType = sourceType {
+            ImagePicker(
+                sourceType: sourceType.sourceType,
+                didSelectImage: viewModel.didSelectImage
+            )
+            .ignoresSafeArea()
+        }
     }
 }
 
