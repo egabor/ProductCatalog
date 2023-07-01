@@ -49,7 +49,7 @@ struct ProductListScreen: View {
         NavigationLink {
             ProductDetailsScreen()
         } label: {
-            Image(systemName: "plus") // TODO: Move to constants
+            Image(systemName: ImageConstants.plus)
         }
         .disabled(viewModel.isEditMode)
     }
@@ -100,7 +100,7 @@ struct ProductListScreen: View {
                 },
                 label: {
                     HStack {
-                        Image(systemName: viewModel.selection.contains(viewData) ? "circle.inset.filled" : "circle")
+                        Image(systemName: viewModel.selection.contains(viewData) ? ImageConstants.circleWithInset : ImageConstants.circle)
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(maxWidth: 24, maxHeight: 24)

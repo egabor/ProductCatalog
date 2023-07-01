@@ -74,7 +74,7 @@ struct ProductDetailsScreen: View {
                     .toolbar {
                         Button(
                             action: viewModel.hideBarcodeScanner,
-                            label: { Image(systemName: "xmark") } // TODO: move to constants
+                            label: { Image(systemName: ImageConstants.xmark) }
                         )
                     }
                 }
