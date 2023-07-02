@@ -35,7 +35,11 @@ class ProductDetailsViewModel: ObservableObject {
     @Published var recognizedVisionItems: [RecognizedItem] = []
     @Published var isEditing: Bool = false
 
+    var didScanBarcode: PassthroughSubject<Void, Never> = .init()
+
     @Injected private var productService: ProductService
+
+    private var cancellables = Set<AnyCancellable>()
 
     init(product: Product? = nil) {
         if let product = product {
@@ -48,7 +52,7 @@ class ProductDetailsViewModel: ObservableObject {
     }
 
     private func setupSubscriptions() {
-        $recognizedVisionItems
+        let scannedBarcode = $recognizedVisionItems
             .compactMap { items in
                 items.compactMap { item in
                     switch item {
@@ -60,7 +64,15 @@ class ProductDetailsViewModel: ObservableObject {
                 }
             }
             .compactMap { $0.first }
+
+        scannedBarcode
             .assign(to: &$barcode)
+
+        scannedBarcode
+            .sink(receiveValue: { [weak self] _ in
+                self?.didScanBarcode.send(())
+            })
+            .store(in: &cancellables)
     }
 
     private func validateForErrors() throws {

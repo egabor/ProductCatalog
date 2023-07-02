@@ -9,14 +9,14 @@ import SwiftUI
 
 struct ProductDetailsScreen: View {
 
-    @StateObject private var viewModel: ProductDetailsViewModel = .init()
+    @StateObject private var viewModel: ProductDetailsViewModel = .init(product: nil)
+    var configuration: Configuration = .init()
 
-    init() {
-        _viewModel = .init(wrappedValue: .init(product: nil))
-    }
+    init() {}
 
-    init(product: Product) {
+    init(product: Product?, configuration: Configuration = .init()) {
         _viewModel = .init(wrappedValue: .init(product: product))
+        self.configuration = configuration
     }
 
     // MARK: - LEVEL 0 Views: Body & Content Wrapper (Main Containers)
@@ -66,8 +66,7 @@ struct ProductDetailsScreen: View {
                 item: $viewModel.imagePickerMediaSource,
                 content: imageSelector
             )
-            .onReceive(viewModel.$barcode) { barcode in // TODO: move to viewmodel
-                guard barcode.isEmpty == false else { return }
+            .onReceive(viewModel.didScanBarcode) { _ in
                 let feedbackGenerator = UINotificationFeedbackGenerator()
                 feedbackGenerator.prepare()
                 feedbackGenerator.notificationOccurred(.success)
@@ -108,6 +107,14 @@ struct ProductDetailsScreen: View {
         .scrollDismissesKeyboard(.immediately)
     }
 
+    @ViewBuilder
+    var sections: some View {
+        productImageSection
+        productNameSection
+        productBarcodeSection
+        categorySection
+    }
+
     // MARK: - LEVEL 2 Views: Helpers & Other Subcomponents
 
     @ViewBuilder
@@ -123,119 +130,6 @@ struct ProductDetailsScreen: View {
                 action: viewModel.editProduct
             )
         }
-    }
-
-    @ViewBuilder
-    var sections: some View {
-        Section(
-            content: {
-                productImageRow
-            },
-            header: {
-                Text(LocalizedStringKey(viewModel.localizedImageSectionTitle))
-            }
-        )
-
-        Section(
-            content: {
-                productNameTextField
-            },
-            header: {
-                Text(LocalizedStringKey(viewModel.localizedNameSectionTitle))
-            }
-        )
-
-        Section(
-            content: {
-                barcodeInput
-            },
-            header: {
-                Text(LocalizedStringKey(viewModel.localizedBarcodeSectionTitle))
-            }
-        )
-
-        Section(
-            content: {
-                categorySelector
-            },
-            header: {
-                Text(LocalizedStringKey(viewModel.localizedCategorySectionTitle))
-            }
-        )
-    }
-
-    var productImageRow: some View {
-        VStack {
-            if let image = viewModel.productImage {
-                Image(uiImage: image)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(maxWidth: 250, maxHeight: 250, alignment: .center) // TODO: move to config
-            }
-            if viewModel.isEditing {
-                HStack {
-                    Menu(
-                        content: {
-                            ForEach(viewModel.mediaSourceTypes) { sourceType in
-                                Button(
-                                    action: { viewModel.selectImage(for: sourceType) },
-                                    label: { Text(sourceType.displayValue) }
-                                )
-                            }
-                        },
-                        label: {
-                            Text(LocalizedStringKey(viewModel.localizedSelectImageButtonTitle))
-                                .frame(maxWidth: .infinity)
-                        }
-                    )
-                    // TODO: Clear button
-                }
-            }
-        }
-    }
-
-    var productNameTextField: some View {
-        TextField(
-            LocalizedStringKey(viewModel.localizedNameTextFieldPlaceholder),
-            text: $viewModel.name
-        )
-        .disableAutocorrection(true)
-    }
-
-    var barcodeInput: some View {
-        HStack {
-            Text(viewModel.barcode)
-            Spacer()
-            if viewModel.isEditing {
-                Button(
-                    action: viewModel.showBarcodeScanner,
-                    label: { Text(LocalizedStringKey(viewModel.localizedScanBarcodeButtonTitle)) }
-                )
-            }
-        }
-    }
-
-    var categorySelector: some View {
-        Menu(
-            content: {
-                ForEach(viewModel.categories) { category in
-                    Button(
-                        action: { viewModel.category = category },
-                        label: { Text(category.displayValue) }
-                    )
-                }
-            },
-            label: {
-                HStack {
-                    if let category = viewModel.category {
-                        Text(category.displayValue)
-                    } else {
-                        Text(LocalizedStringKey(viewModel.localizedSelectCategoryButtonTitle))
-                    }
-                    Spacer()
-                }
-            }
-        )
     }
 
     @ViewBuilder
@@ -268,8 +162,181 @@ struct ProductDetailsScreen: View {
     }
 }
 
-struct ProductDetailsScreen_Previews: PreviewProvider {
-    static var previews: some View {
-        ProductDetailsScreen()
+// MARK: - Sections
+
+extension ProductDetailsScreen {
+
+    // MARK: - Product Image
+
+    var productImageSection: some View {
+        Section(
+            content: productImageSectionContent,
+            header: productImageSectionHeader
+        )
+    }
+
+    func productImageSectionHeader() -> some View {
+        Text(LocalizedStringKey(viewModel.localizedImageSectionTitle))
+    }
+
+    func productImageSectionContent() -> some View {
+        VStack {
+            productImage
+            selectProductImageButton
+        }
+    }
+
+    @ViewBuilder
+    var productImage: some View {
+        if let image = viewModel.productImage {
+            HStack {
+                Spacer()
+                Image(uiImage: image)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .cornerRadius(configuration.productImageCornerRadius)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: configuration.productImageCornerRadius)
+                            .stroke(Color.white, lineWidth: 0)
+                    )
+                    .shadow(radius: configuration.productImageShadowRadius)
+                    .frame(
+                        maxWidth: configuration.maximumImageWidth,
+                        maxHeight: configuration.maximumImageHeight,
+                        alignment: .center
+                    )
+                Spacer()
+            }
+        }
+    }
+
+    @ViewBuilder
+    var selectProductImageButton: some View {
+        if viewModel.isEditing {
+            HStack {
+                Menu(
+                    content: sourceTypeMenuItems,
+                    label: sourceTypePickerLabel
+                )
+            }
+        }
+    }
+
+    func sourceTypeMenuItems() -> some View {
+        ForEach(viewModel.mediaSourceTypes) { sourceType in
+            Button(
+                action: { viewModel.selectImage(for: sourceType) },
+                label: { Text(sourceType.displayValue) }
+            )
+        }
+    }
+
+    func sourceTypePickerLabel() -> some View {
+        Text(LocalizedStringKey(viewModel.localizedSelectImageButtonTitle))
+            .frame(maxWidth: .infinity)
+    }
+
+    // MARK: - Product Name
+
+    var productNameSection: some View {
+        Section(
+            content: productNameSectionContent,
+            header: productNameSectionHeader
+        )
+    }
+
+    func productNameSectionHeader() -> some View {
+        Text(LocalizedStringKey(viewModel.localizedNameSectionTitle))
+    }
+
+    func productNameSectionContent() -> some View {
+        TextField(
+            LocalizedStringKey(viewModel.localizedNameTextFieldPlaceholder),
+            text: $viewModel.name
+        )
+        .disableAutocorrection(true)
+    }
+
+
+    // MARK: - Product Barcode
+
+    var productBarcodeSection: some View {
+        Section(
+            content: productBarcodeSectionContent,
+            header: productBarcodeSectionHeader
+        )
+    }
+
+    func productBarcodeSectionHeader() -> some View {
+        Text(LocalizedStringKey(viewModel.localizedBarcodeSectionTitle))
+    }
+
+    func productBarcodeSectionContent() -> some View {
+        HStack {
+            Text(viewModel.barcode)
+            Spacer()
+            scanBarcodeButton
+        }
+    }
+
+    @ViewBuilder
+    var scanBarcodeButton: some View {
+        if viewModel.isEditing {
+            Button(
+                action: viewModel.showBarcodeScanner,
+                label: { Text(LocalizedStringKey(viewModel.localizedScanBarcodeButtonTitle)) }
+            )
+        }
+    }
+
+    // MARK: - Product Category
+
+    var categorySection: some View {
+        Section(
+            content: productCategorySectionContent,
+            header: productCategorySectionHeader
+        )
+    }
+
+    func productCategorySectionHeader() -> some View {
+        Text(LocalizedStringKey(viewModel.localizedCategorySectionTitle))
+    }
+
+    func productCategorySectionContent() -> some View {
+        Menu(
+            content: categoryMenuItems,
+            label: categoryPickerLabel
+        )
+    }
+
+    func categoryMenuItems() -> some View {
+        ForEach(viewModel.categories) { category in
+            Button(
+                action: { viewModel.category = category },
+                label: { Text(category.displayValue) }
+            )
+        }
+    }
+
+    func categoryPickerLabel() -> some View {
+        HStack {
+            if let category = viewModel.category {
+                Text(category.displayValue)
+            } else {
+                Text(LocalizedStringKey(viewModel.localizedSelectCategoryButtonTitle))
+            }
+            Spacer()
+        }
+    }
+}
+
+extension ProductDetailsScreen {
+
+    struct Configuration {
+
+        var maximumImageWidth: CGFloat = 250.0
+        var maximumImageHeight: CGFloat = 250.0
+        var productImageCornerRadius: CGFloat = 8.0
+        var productImageShadowRadius: CGFloat = 2.0
     }
 }

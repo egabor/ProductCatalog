@@ -11,6 +11,7 @@ struct ProductView: View {
 
     let viewData: ProductViewData
     @Binding var isEditing: Bool
+    var configuration: Configuration = .init()
 
     // MARK: - LEVEL 0 Views: Body & Content Wrapper (Main Containers)
 
@@ -61,7 +62,16 @@ struct ProductView: View {
             Image(uiImage: image)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .frame(maxWidth: 50, maxHeight: 50, alignment: .center) // TODO: move to config
+                .cornerRadius(configuration.productImageCornerRadius)
+                .overlay(
+                    RoundedRectangle(cornerRadius: configuration.productImageCornerRadius)
+                        .stroke(Color.white, lineWidth: 0)
+                )
+                .frame(
+                    maxWidth: configuration.maximumImageWidth,
+                    maxHeight: configuration.maximumImageHeight,
+                    alignment: .center
+                )
         }
     }
 
@@ -77,7 +87,7 @@ struct ProductView: View {
         if let mostSimilarProductName = viewData.mostSimilarProductName {
             Text(mostSimilarProductName)
                 .monospaced(true)
-                .font(.system(size: 12)) // TODO: move to config
+                .font(.system(size: configuration.similarProductNameFontSize))
         }
     }
 
@@ -100,7 +110,10 @@ struct ProductView: View {
         selectionImage
             .resizable()
             .aspectRatio(contentMode: .fit)
-            .frame(maxWidth: 24, maxHeight: 24) // TODO: move to config
+            .frame(
+                width: configuration.selectionIndicatorSize,
+                height: configuration.selectionIndicatorSize
+            )
             .foregroundColor(.accentColor)
     }
 
@@ -120,20 +133,15 @@ struct ProductView: View {
     }
 }
 
-//struct ProductRow_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ProductView( // TODO: provide preview data
-//            viewData: .init(
-//                id: 0,
-//                image: nil,
-//                name: nil,
-//                mostSimilarProductName: nil,
-//                isSelected: {},
-//                select: {},
-//                deselect: {},
-//                getProduct: {}
-//            ),
-//            isEditing: .constant(false)
-//        )
-//    }
-//}
+extension ProductView {
+
+    struct Configuration {
+
+        var maximumImageWidth: CGFloat = 50.0
+        var maximumImageHeight: CGFloat = 50.0
+        var productImageCornerRadius: CGFloat = 6.0
+
+        var selectionIndicatorSize: CGFloat = 24.0
+        var similarProductNameFontSize: CGFloat = 12
+    }
+}

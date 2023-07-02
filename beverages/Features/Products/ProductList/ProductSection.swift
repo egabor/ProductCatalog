@@ -47,16 +47,3 @@ struct ProductSection: View {
         )
     }
 }
-
-struct ProductSection_Previews: PreviewProvider {
-    static var previews: some View {
-        ProductSection( // TODO: provide preview data
-            viewData: .init(
-                order: 0,
-                headerTitle: "Section Header",
-                products: []
-            ),
-            isEditing: .constant(false)
-        )
-    }
-}

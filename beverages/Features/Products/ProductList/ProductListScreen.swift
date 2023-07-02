@@ -103,9 +103,3 @@ struct ProductListScreen: View {
         )
     }
 }
-
-struct ProductListScreen_Previews: PreviewProvider {
-    static var previews: some View {
-        ProductListScreen()
-    }
-}
