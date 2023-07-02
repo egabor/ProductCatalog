@@ -151,6 +151,15 @@
 			path = Features;
 			sourceTree = "<group>";
 		};
+		625ACC352A516A600024EFE6 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				625ACC1A2A50C2540024EFE6 /* ProductViewData.swift */,
+				625ACC1C2A50C2800024EFE6 /* ProductSectionViewData.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		62B621652A4E0108003ACCA6 = {
 			isa = PBXGroup;
 			children = (
@@ -218,6 +227,7 @@
 			children = (
 				62B621AF2A4E0AD9003ACCA6 /* ProductListScreen.swift */,
 				625ACC142A503DE50024EFE6 /* ProductListViewModel.swift */,
+				625ACC352A516A600024EFE6 /* Models */,
 			);
 			path = ProductList;
 			sourceTree = "<group>";
@@ -236,9 +246,6 @@
 			isa = PBXGroup;
 			children = (
 				62B621B32A4E0D11003ACCA6 /* ProductCategory.swift */,
-				625ACC182A50C1DB0024EFE6 /* ImagePickerMediaSourceType.swift */,
-				625ACC1A2A50C2540024EFE6 /* ProductViewData.swift */,
-				625ACC1C2A50C2800024EFE6 /* ProductSectionViewData.swift */,
 				625ACC1E2A50C29E0024EFE6 /* StringPair.swift */,
 				62B621AA2A4E0838003ACCA6 /* Product */,
 				62B621A92A4E082E003ACCA6 /* DBProduct */,
@@ -277,6 +284,7 @@
 			isa = PBXGroup;
 			children = (
 				62B621C72A4F6B93003ACCA6 /* ImagePicker.swift */,
+				625ACC182A50C1DB0024EFE6 /* ImagePickerMediaSourceType.swift */,
 			);
 			path = ImagePicker;
 			sourceTree = "<group>";
