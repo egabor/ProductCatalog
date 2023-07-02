@@ -9,7 +9,6 @@ import Foundation
 
 enum ExportError: Error {
 
-    case emptyImage
     case emptyName
     case emptyCategory
 }
@@ -18,8 +17,6 @@ extension ExportError: LocalizedError {
 
     public var errorDescription: String? {
         switch self {
-            case .emptyImage:
-                return .productDetailsScreenAlertErrorImageIsEmptyMessage
             case .emptyName:
                 return .productDetailsScreenAlertErrorNameIsEmptyMessage
             case .emptyCategory:

@@ -9,6 +9,7 @@ import Foundation
 import Resolver
 import VisionKit
 import Combine
+import AVFoundation
 
 class ProductDetailsViewModel: ObservableObject {
 
@@ -17,7 +18,14 @@ class ProductDetailsViewModel: ObservableObject {
     @Published var isEditing: Bool = false
 
     var productId: Int?
-    var mediaSourceTypes: [ImagePickerMediaSourceType] = [.photoLibrary, .camera]
+    var mediaSourceTypes: [ImagePickerMediaSourceType] {
+        if AVCaptureDevice.authorizationStatus(for: .video) == .notDetermined ||
+            AVCaptureDevice.authorizationStatus(for: .video) == .authorized {
+            return [.photoLibrary, .camera]
+        } else {
+            return [.photoLibrary]
+        }
+    }
     @Published var imagePickerMediaSource: ImagePickerMediaSourceType?
     @Published var productImage: UIImage?
 
@@ -83,7 +91,6 @@ class ProductDetailsViewModel: ObservableObject {
 
     private func validateForErrors() throws {
 
-        if productImage == nil { throw ExportError.emptyImage }
         if name.isEmpty { throw ExportError.emptyName }
         if category == nil { throw ExportError.emptyCategory }
     }
