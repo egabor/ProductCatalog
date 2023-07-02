@@ -19,23 +19,13 @@ struct ProductDetailsScreen: View {
         _viewModel = .init(wrappedValue: .init(product: product))
     }
 
+    // MARK: - LEVEL 0 Views: Body & Content Wrapper (Main Containers)
+
     var body: some View {
         content
             .navigationTitle(LocalizedStringKey(viewModel.localizedTitle))
             .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                if viewModel.isEditing {
-                    Button(
-                        LocalizedStringKey(viewModel.localizedSaveButtonTitle),
-                        action: viewModel.performExport
-                    )
-                } else {
-                    Button(
-                        LocalizedStringKey(viewModel.localizedEditButtonTitle),
-                        action: viewModel.editProduct
-                    )
-                }
-            }
+            .toolbar(content: editSaveProductToolbarItem)
             .alert(
                 LocalizedStringKey(viewModel.localizedWarningAlertTitle),
                 isPresented: $viewModel.shouldShowWarningAlert,
@@ -68,26 +58,15 @@ struct ProductDetailsScreen: View {
                 },
                 message: { Text(LocalizedStringKey(viewModel.successMessage)) }
             )
-            .fullScreenCover(isPresented: $viewModel.shouldShowBarcodeScanner) {
-                NavigationView {
-                    ScannerScreen(
-                        recognizedItems: $viewModel.recognizedVisionItems,
-                        recognizedDataType: .barcode(symbologies: [.ean8, .ean13])
-                    )
-                    .ignoresSafeArea()
-                    .toolbar {
-                        Button(
-                            action: viewModel.hideBarcodeScanner,
-                            label: { Image.xmark }
-                        )
-                    }
-                }
-            }
+            .fullScreenCover(
+                isPresented: $viewModel.shouldShowBarcodeScanner,
+                content: barcodeScannerScreen
+            )
             .fullScreenCover(
                 item: $viewModel.imagePickerMediaSource,
                 content: imageSelector
             )
-            .onReceive(viewModel.$barcode) { barcode in
+            .onReceive(viewModel.$barcode) { barcode in // TODO: move to viewmodel
                 guard barcode.isEmpty == false else { return }
                 let feedbackGenerator = UINotificationFeedbackGenerator()
                 feedbackGenerator.prepare()
@@ -105,6 +84,15 @@ struct ProductDetailsScreen: View {
         }
     }
 
+    // MARK: - LEVEL 1 Views: Main UI Elements
+
+    func editSaveProductToolbarItem() -> some ToolbarContent {
+        ToolbarItem(
+            placement: .navigationBarTrailing,
+            content: editSaveProductButton
+        )
+    }
+
     var displayContent: some View {
         List {
             sections
@@ -118,6 +106,23 @@ struct ProductDetailsScreen: View {
             sections
         }
         .scrollDismissesKeyboard(.immediately)
+    }
+
+    // MARK: - LEVEL 2 Views: Helpers & Other Subcomponents
+
+    @ViewBuilder
+    func editSaveProductButton() -> some View {
+        if viewModel.isEditing {
+            Button(
+                LocalizedStringKey(viewModel.localizedSaveButtonTitle),
+                action: viewModel.performExport
+            )
+        } else {
+            Button(
+                LocalizedStringKey(viewModel.localizedEditButtonTitle),
+                action: viewModel.editProduct
+            )
+        }
     }
 
     @ViewBuilder
@@ -192,10 +197,7 @@ struct ProductDetailsScreen: View {
     var productNameTextField: some View {
         TextField(
             LocalizedStringKey(viewModel.localizedNameTextFieldPlaceholder),
-            text: .init(
-                get: { viewModel.name.trimmed },
-                set: { viewModel.name = $0.trimmed }
-            )
+            text: $viewModel.name
         )
         .disableAutocorrection(true)
     }
@@ -244,6 +246,24 @@ struct ProductDetailsScreen: View {
                 didSelectImage: viewModel.didSelectImage
             )
             .ignoresSafeArea()
+        }
+    }
+
+    func barcodeScannerScreen() -> some View {
+        NavigationView {
+            ScannerScreen(
+                recognizedItems: $viewModel.recognizedVisionItems,
+                recognizedDataType: .barcode(symbologies: [.ean8, .ean13])
+            )
+            .ignoresSafeArea()
+            .toolbar {
+                Button(
+                    action: viewModel.hideBarcodeScanner,
+                    label: { Image.xmark }
+                )
+            }
+            .navigationTitle(LocalizedStringKey(viewModel.localizedBarcodeScannerScreenTitle))
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }

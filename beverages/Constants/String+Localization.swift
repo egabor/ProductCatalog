@@ -70,4 +70,9 @@ extension String {
 
     static let imagePickerMediaSourceTypePhotoLibraryTitle = "imagePickerMediaSourceType.photoLibrary.title"
     static let imagePickerMediaSourceTypeCameraTitle = "imagePickerMediaSourceType.camera.title"
+
+    // MARK: - Barcode Scanner
+
+    static let barcodeScannerScreenTitle = "barcodeScanner.screen.title"
+
 }

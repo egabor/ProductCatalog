@@ -61,3 +61,7 @@
 
 "imagePickerMediaSourceType.photoLibrary.title" = "Photo Library";
 "imagePickerMediaSourceType.camera.title" = "Camera";
+
+// MARK: - Barcode Scanner
+
+"barcodeScanner.screen.title" = "Scanner";

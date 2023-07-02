@@ -18,9 +18,6 @@ struct ProductListScreen: View {
             .navigationTitle(LocalizedStringKey(viewModel.localizedTitle))
             .toolbar(content: addProductToolbarItem)
             .toolbar(content: deleteSelectedProductsToolbarItem)
-            .onChange(of: viewModel.isEditing) { _ in
-                viewModel.selection.removeAll()
-            }
     }
 
     @ViewBuilder
@@ -53,6 +50,8 @@ struct ProductListScreen: View {
 
     var emptyList: some View {
         Text(LocalizedStringKey(viewModel.localizedEmptyListTitle))
+            .multilineTextAlignment(.center)
+            .padding()
     }
 
     var productList: some View {
@@ -71,6 +70,7 @@ struct ProductListScreen: View {
             destination: ProductDetailsScreen.init,
             label: { Image.plus }
         )
+        .disabled(viewModel.isEditing)
     }
 
     func deleteSelectedProductsButton() -> some View {

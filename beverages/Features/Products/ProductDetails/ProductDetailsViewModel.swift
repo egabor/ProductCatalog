@@ -128,7 +128,7 @@ extension ProductDetailsViewModel {
         return .init(
             productId: productId,
             imageData: productImage?.jpegData(compressionQuality: 0.6),
-            name: name,
+            name: name.trimmed,
             barcode: barcode,
             category: category
         )
@@ -272,5 +272,9 @@ extension ProductDetailsViewModel {
 
     var localizedSelectCategoryButtonTitle: String {
         .productDetailsScreenSelectCategoryButtonTitle
+    }
+
+    var localizedBarcodeScannerScreenTitle: String {
+        .barcodeScannerScreenTitle
     }
 }

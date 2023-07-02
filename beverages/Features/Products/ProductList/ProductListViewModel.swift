@@ -68,11 +68,15 @@ class ProductListViewModel: ObservableObject {
                 )
             }
         }
+        if productSections.isEmpty {
+            isEditing = false
+        }
     }
 
     private func calculateLevenshteinDistance(for products: [Product]) {
         levenshteinDistances = []
         let names = Set(products.map { $0.name }).sorted()
+        guard 2 <= names.count else { return }
         for i in 0 ..< names.count - 1 {
             for j in i + 1 ..< names.count {
                 if i == j { continue }
@@ -103,6 +107,7 @@ class ProductListViewModel: ObservableObject {
 
     func toggleEditMode() {
         isEditing.toggle()
+        selection.removeAll()
     }
 
     private func setupSubscriptions() {
