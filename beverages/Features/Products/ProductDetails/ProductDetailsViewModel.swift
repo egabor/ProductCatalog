@@ -37,7 +37,7 @@ class ProductDetailsViewModel: ObservableObject {
 
     var didScanBarcode: PassthroughSubject<Void, Never> = .init()
 
-    @Injected private var productService: ProductService
+    @Injected private var productService: ProductServiceProtocol
 
     private var cancellables = Set<AnyCancellable>()
 

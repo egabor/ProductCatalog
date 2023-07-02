@@ -22,7 +22,8 @@ class ProductListViewModel: ObservableObject {
 
     var levenshteinDistances: [(pair: StringPair, distance: Int)] = []
 
-    @Injected private var productService: ProductService
+    @Injected private var productService: ProductServiceProtocol
+    @Injected private var getLevenshteinDistances: GetLevenshteinDistancesUseCaseProtocol
 
     var isProductListEmpty: Bool {
         productSections.isEmpty
@@ -74,22 +75,8 @@ class ProductListViewModel: ObservableObject {
     }
 
     private func calculateLevenshteinDistance(for products: [Product]) {
-        levenshteinDistances = []
         let names = Set(products.map { $0.name }).sorted()
-        guard 2 <= names.count else { return }
-        for i in 0 ..< names.count - 1 {
-            for j in i + 1 ..< names.count {
-                if i == j { continue }
-                let nameA = names[i]
-                let nameB = names[j]
-                let key: StringPair = .init(valueA: nameA, valueB: nameB)
-                let value: Int = nameA.getLevenshtein(to: nameB)
-                levenshteinDistances.append((key, value))
-            }
-        }
-        levenshteinDistances = levenshteinDistances.sorted(by: { (lValue, rValue) -> Bool in
-            lValue.1 < rValue.1
-        })
+        levenshteinDistances = getLevenshteinDistances(for: names)
     }
 
     private func mostSimilarProductName(for name: String) -> String? {

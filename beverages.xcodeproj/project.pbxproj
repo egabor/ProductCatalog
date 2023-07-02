@@ -44,6 +44,7 @@
 		62B621C22A4EEC05003ACCA6 /* ProductService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B621C12A4EEC05003ACCA6 /* ProductService.swift */; };
 		62B621C52A4F0910003ACCA6 /* ScannerScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B621C42A4F0910003ACCA6 /* ScannerScreen.swift */; };
 		62B621C82A4F6B93003ACCA6 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B621C72A4F6B93003ACCA6 /* ImagePicker.swift */; };
+		62D72DB72A51A282000F59EE /* GetLevenshteinDistancesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D72DB62A51A282000F59EE /* GetLevenshteinDistancesUseCase.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,6 +95,7 @@
 		62B621C12A4EEC05003ACCA6 /* ProductService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductService.swift; sourceTree = "<group>"; };
 		62B621C42A4F0910003ACCA6 /* ScannerScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerScreen.swift; sourceTree = "<group>"; };
 		62B621C72A4F6B93003ACCA6 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		62D72DB62A51A282000F59EE /* GetLevenshteinDistancesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetLevenshteinDistancesUseCase.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +143,7 @@
 				62B621A32A4E035E003ACCA6 /* SQLiteHelper.swift */,
 				625ACC162A50AEC30024EFE6 /* String+Levenshtein.swift */,
 				625ACC222A50C6BF0024EFE6 /* String+Trimmed.swift */,
+				62D72DB62A51A282000F59EE /* GetLevenshteinDistancesUseCase.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -409,6 +412,7 @@
 				625ACC2B2A50CB670024EFE6 /* String+Localization.swift in Sources */,
 				625ACC212A50C37D0024EFE6 /* Images.swift in Sources */,
 				625ACC192A50C1DB0024EFE6 /* ImagePickerMediaSourceType.swift in Sources */,
+				62D72DB72A51A282000F59EE /* GetLevenshteinDistancesUseCase.swift in Sources */,
 				625ACC342A51670D0024EFE6 /* Constants.swift in Sources */,
 				625ACC172A50AEC30024EFE6 /* String+Levenshtein.swift in Sources */,
 				62B621A22A4E0306003ACCA6 /* Resolver+Registry.swift in Sources */,

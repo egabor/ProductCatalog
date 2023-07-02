@@ -13,6 +13,7 @@ extension Resolver {
     static func registerProductDependencies() {
 
         register { ProductService() }
+            .implements(ProductServiceProtocol.self)
             .scope(.application)
     }
 }

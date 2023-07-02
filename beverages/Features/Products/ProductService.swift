@@ -8,7 +8,16 @@
 import Foundation
 import Combine
 
-class ProductService {
+protocol ProductServiceProtocol {
+
+    var dataSetUpdate: PassthroughSubject<Void, Never> { get set }
+
+    func save(product: Product) throws -> Product
+    func deleteProducts(by ids: [Int]) throws
+    func loadAll() -> [Product]
+}
+
+class ProductService: ProductServiceProtocol {
 
     var dataSetUpdate: PassthroughSubject<Void, Never> = .init()
 

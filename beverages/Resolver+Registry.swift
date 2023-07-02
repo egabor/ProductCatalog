@@ -13,5 +13,8 @@ extension Resolver: ResolverRegistering {
     public static func registerAllServices() {
 
         registerProductDependencies()
+
+        register { GetLevenshteinDistancesUseCase() }
+            .implements(GetLevenshteinDistancesUseCaseProtocol.self)
     }
 }
