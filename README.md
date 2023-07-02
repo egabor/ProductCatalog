@@ -36,8 +36,8 @@ MVVM architecture is used in the project along with SwiftUI and Combine.
 
 ## Images
 
-![01](/images/c01.PNG | width=100)
-![02](/images/c02.PNG | width=100)
-![03](/images/c03.jpeg | width=100)
-![04](/images/c04.PNG | width=100)
-![05](/images/c05.PNG | width=100)
+<img src="https://github.com/egabor/ProductCatalog/blob/4b96bd2eb0b9ffb1bd78fa23d4b39e9ba780fb70/images/c01.PNG" width=50% height=50%>
+<img src="https://github.com/egabor/ProductCatalog/blob/4b96bd2eb0b9ffb1bd78fa23d4b39e9ba780fb70/images/c02.PNG" width=50% height=50%>
+<img src="https://github.com/egabor/ProductCatalog/blob/4b96bd2eb0b9ffb1bd78fa23d4b39e9ba780fb70/images/c03.jpeg" width=50% height=50%>
+<img src="https://github.com/egabor/ProductCatalog/blob/4b96bd2eb0b9ffb1bd78fa23d4b39e9ba780fb70/images/c04.PNG" width=50% height=50%>
+<img src="https://github.com/egabor/ProductCatalog/blob/4b96bd2eb0b9ffb1bd78fa23d4b39e9ba780fb70/images/c05.PNG" width=50% height=50%>
