@@ -11,6 +11,7 @@ Built with Xcode 14.2.
 MVVM architecture is used in the project along with SwiftUI and Combine.
 
 ## Priorities
+
 - [x] Get the task done (something that works)
 - [x] Meet all of the requirements (something that works according to the specs)
 - [x] Make the project folder structure clean
@@ -27,3 +28,8 @@ MVVM architecture is used in the project along with SwiftUI and Combine.
 - Combine
 - Resolver (for dependency injection)
 - SQLite (for persistent data storage)
+
+## Things To Improve
+
+- Camera permission handling
+- Exception handling
