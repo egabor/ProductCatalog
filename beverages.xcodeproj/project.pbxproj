@@ -83,6 +83,7 @@
 		62B621C42A4F0910003ACCA6 /* ScannerScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerScreen.swift; sourceTree = "<group>"; };
 		62B621C72A4F6B93003ACCA6 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		62D72DB62A51A282000F59EE /* GetLevenshteinDistancesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetLevenshteinDistancesUseCase.swift; sourceTree = "<group>"; };
+		62D72DB82A51ABF2000F59EE /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +142,7 @@
 		62B621652A4E0108003ACCA6 = {
 			isa = PBXGroup;
 			children = (
+				62D72DB82A51ABF2000F59EE /* README.md */,
 				62B621702A4E0109003ACCA6 /* beverages */,
 				62B6216F2A4E0109003ACCA6 /* Products */,
 			);
