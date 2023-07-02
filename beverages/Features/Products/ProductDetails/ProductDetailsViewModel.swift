@@ -12,13 +12,22 @@ import Combine
 
 class ProductDetailsViewModel: ObservableObject {
 
+    let imageCompressionQuality = 0.6
+
+    @Published var isEditing: Bool = false
+
     var productId: Int?
     var mediaSourceTypes: [ImagePickerMediaSourceType] = [.photoLibrary, .camera]
     @Published var imagePickerMediaSource: ImagePickerMediaSourceType?
     @Published var productImage: UIImage?
 
     @Published var name: String = ""
+
     @Published var barcode: String = ""
+    @Published var shouldShowBarcodeScanner: Bool = false
+    @Published var recognizedVisionItems: [RecognizedItem] = []
+    var didScanBarcode: PassthroughSubject<Void, Never> = .init()
+
     @Published var category: ProductCategory?
     var categories: [ProductCategory] = ProductCategory.allCases
 
@@ -31,17 +40,12 @@ class ProductDetailsViewModel: ObservableObject {
     var successMessage: String = ""
     @Published var shouldShowSuccessAlert: Bool = false
 
-    @Published var shouldShowBarcodeScanner: Bool = false
-    @Published var recognizedVisionItems: [RecognizedItem] = []
-    @Published var isEditing: Bool = false
-
-    var didScanBarcode: PassthroughSubject<Void, Never> = .init()
-
     @Injected private var productService: ProductServiceProtocol
 
     private var cancellables = Set<AnyCancellable>()
 
     init(product: Product? = nil) {
+
         if let product = product {
             importData(product)
         } else {
@@ -52,6 +56,7 @@ class ProductDetailsViewModel: ObservableObject {
     }
 
     private func setupSubscriptions() {
+
         let scannedBarcode = $recognizedVisionItems
             .compactMap { items in
                 items.compactMap { item in
@@ -71,6 +76,7 @@ class ProductDetailsViewModel: ObservableObject {
         scannedBarcode
             .sink(receiveValue: { [weak self] _ in
                 self?.didScanBarcode.send(())
+                self?.hideBarcodeScanner()
             })
             .store(in: &cancellables)
     }
@@ -139,7 +145,7 @@ extension ProductDetailsViewModel {
         }
         return .init(
             productId: productId,
-            imageData: productImage?.jpegData(compressionQuality: 0.6),
+            imageData: productImage?.jpegData(compressionQuality: imageCompressionQuality),
             name: name.trimmed,
             barcode: barcode,
             category: category
@@ -147,6 +153,7 @@ extension ProductDetailsViewModel {
     }
 
     private func save(skipWarnings: Bool = false) throws {
+
         let productToSave = try export(skipWarnings: skipWarnings) // collect the data from the form
         guard let savedProduct = try? productService.save(product: productToSave) else { return } // save and load back the Product from the DB
         importData(savedProduct)
@@ -209,6 +216,7 @@ extension ProductDetailsViewModel {
 extension ProductDetailsViewModel {
 
     var localizedTitle: String {
+
         guard productId != nil else { return .productDetailsScreenCreateTitle }
         guard isEditing else { return .productDetailsScreenTitle }
         return .productDetailsScreenEditTitle

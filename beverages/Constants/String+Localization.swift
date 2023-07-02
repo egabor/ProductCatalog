@@ -74,5 +74,4 @@ extension String {
     // MARK: - Barcode Scanner
 
     static let barcodeScannerScreenTitle = "barcodeScanner.screen.title"
-
 }

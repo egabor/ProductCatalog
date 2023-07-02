@@ -70,7 +70,6 @@ struct ProductDetailsScreen: View {
                 let feedbackGenerator = UINotificationFeedbackGenerator()
                 feedbackGenerator.prepare()
                 feedbackGenerator.notificationOccurred(.success)
-                viewModel.hideBarcodeScanner()
             }
     }
 

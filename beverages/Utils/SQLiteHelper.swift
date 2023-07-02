@@ -18,6 +18,7 @@ class SQLiteHelper {
 
     /// Copy an empty database file from bundle resources to documents folder if not exists
     static func copyDatabaseIfNeeded() throws {
+
         let databaseExtension = Constants.databaseFileExtension
         guard let resourcePath = Bundle.main.resourcePath else { throw SQLiteHelperError.invalidBundlePath }
         guard let resourceContents = try? FileManager.default.contentsOfDirectory(atPath: resourcePath) else { throw SQLiteHelperError.invalidDirectory }

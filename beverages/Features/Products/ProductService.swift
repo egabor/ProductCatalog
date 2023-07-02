@@ -23,6 +23,7 @@ class ProductService: ProductServiceProtocol {
 
     /// Saves the data to the DB then retrieves the saved record and returns it.
     func save(product: Product) throws -> Product {
+
         let productToSave = DBProduct.from(product)
         let savedProduct = try productToSave.save()
         dataSetUpdate.send(())
@@ -30,6 +31,7 @@ class ProductService: ProductServiceProtocol {
     }
 
     func deleteProducts(by ids: [Int]) throws {
+
         try ids.forEach { id in
             try DBProduct.delete(by: id)
         }
