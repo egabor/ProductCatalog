@@ -11,16 +11,7 @@ import SwiftUI
 struct ProductCatalogApp: App {
     var body: some Scene {
         WindowGroup {
-            NavigationView {
-                ProductListScreen()
-            }
-            .onAppear {
-                do {
-                    try SQLiteHelper.copyDatabaseIfNeeded()
-                } catch {
-                    print(error)
-                }
-            }
+            MainScreen()
         }
     }
 }

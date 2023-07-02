@@ -23,6 +23,7 @@
 		625ACC372A51722E0024EFE6 /* ProductSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 625ACC362A51722E0024EFE6 /* ProductSection.swift */; };
 		625ACC392A5172BB0024EFE6 /* ProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 625ACC382A5172BB0024EFE6 /* ProductView.swift */; };
 		6268C6D22A51B3E800A495F2 /* products.db in Resources */ = {isa = PBXBuildFile; fileRef = 6268C6D12A51B3E800A495F2 /* products.db */; };
+		62A82A842A51BC1E008AEB21 /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A82A832A51BC1E008AEB21 /* MainScreen.swift */; };
 		62B621722A4E0109003ACCA6 /* ProductCatalogApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B621712A4E0109003ACCA6 /* ProductCatalogApp.swift */; };
 		62B621762A4E010B003ACCA6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62B621752A4E010B003ACCA6 /* Assets.xcassets */; };
 		62B621792A4E010B003ACCA6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62B621782A4E010B003ACCA6 /* Preview Assets.xcassets */; };
@@ -63,6 +64,7 @@
 		625ACC362A51722E0024EFE6 /* ProductSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductSection.swift; sourceTree = "<group>"; };
 		625ACC382A5172BB0024EFE6 /* ProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductView.swift; sourceTree = "<group>"; };
 		6268C6D12A51B3E800A495F2 /* products.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = products.db; sourceTree = "<group>"; };
+		62A82A832A51BC1E008AEB21 /* MainScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreen.swift; sourceTree = "<group>"; };
 		62B6216E2A4E0109003ACCA6 /* ProductCatalog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProductCatalog.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		62B621712A4E0109003ACCA6 /* ProductCatalogApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCatalogApp.swift; sourceTree = "<group>"; };
 		62B621752A4E010B003ACCA6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -132,11 +134,20 @@
 		625ACC322A51655F0024EFE6 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				62A82A822A51BC0C008AEB21 /* Main */,
 				62B621C62A4F6B82003ACCA6 /* ImagePicker */,
 				62B621C32A4F08F5003ACCA6 /* Scanner */,
 				62B621A52A4E07C1003ACCA6 /* Products */,
 			);
 			path = Features;
+			sourceTree = "<group>";
+		};
+		62A82A822A51BC0C008AEB21 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				62A82A832A51BC1E008AEB21 /* MainScreen.swift */,
+			);
+			path = Main;
 			sourceTree = "<group>";
 		};
 		62B621652A4E0108003ACCA6 = {
@@ -358,6 +369,7 @@
 				625ACC342A51670D0024EFE6 /* Constants.swift in Sources */,
 				625ACC172A50AEC30024EFE6 /* String+Levenshtein.swift in Sources */,
 				62B621A22A4E0306003ACCA6 /* Resolver+Registry.swift in Sources */,
+				62A82A842A51BC1E008AEB21 /* MainScreen.swift in Sources */,
 				62B621B82A4ED02E003ACCA6 /* DBProduct+Parsing.swift in Sources */,
 				625ACC1D2A50C2800024EFE6 /* ProductSectionViewData.swift in Sources */,
 				62B621A42A4E035E003ACCA6 /* SQLiteHelper.swift in Sources */,

@@ -26,7 +26,6 @@ class SQLiteHelper {
         guard let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { throw SQLiteHelperError.invalidDocumentsURL }
         let sourceURL = Bundle.main.bundleURL.appendingPathComponent(databaseFileName)
         let destinationURL = documentsURL.appendingPathComponent(databaseFileName)
-        print(destinationURL)
         if FileManager.default.fileExists(atPath: destinationURL.path()) == false {
             try FileManager.default.copyItem(at: sourceURL, to: destinationURL)
         }
