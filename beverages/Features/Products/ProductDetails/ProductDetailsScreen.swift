@@ -11,7 +11,11 @@ struct ProductDetailsScreen: View {
 
     @StateObject private var viewModel: ProductDetailsViewModel = .init()
 
-    init(product: Product? = nil) {
+    init() {
+        _viewModel = .init(wrappedValue: .init(product: nil))
+    }
+
+    init(product: Product) {
         _viewModel = .init(wrappedValue: .init(product: product))
     }
 

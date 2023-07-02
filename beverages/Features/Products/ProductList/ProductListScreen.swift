@@ -11,52 +11,43 @@ struct ProductListScreen: View {
 
     @StateObject private var viewModel: ProductListViewModel = .init()
 
+    // MARK: - LEVEL 0 Views: Body & Content Wrapper (Main Containers)
+
     var body: some View {
         content
             .navigationTitle(LocalizedStringKey(viewModel.localizedTitle))
-            .toolbar{
-                ToolbarItem(placement: .navigationBarLeading) {
-                    addNewProductButton
-                }
-            }
-            .toolbar {
-                if viewModel.isEditMode {
-                    ToolbarItemGroup(placement: .bottomBar) {
-                        Button(
-                            role: .destructive,
-                            action: viewModel.deleteSelected,
-                            label: {
-                                Text(viewModel.localizedDeleteButtonTitle)
-                            }
-                        )
-                        .disabled(viewModel.selection.isEmpty)
-                    }
-                }
-            }
-            .onChange(of: viewModel.isEditMode) { _ in
+            .toolbar(content: addProductToolbarItem)
+            .toolbar(content: deleteSelectedProductsToolbarItem)
+            .onChange(of: viewModel.isEditing) { _ in
                 viewModel.selection.removeAll()
             }
     }
 
-    var content: some View {
-        list
-    }
-
-    var addNewProductButton: some View {
-        NavigationLink {
-            ProductDetailsScreen()
-        } label: {
-            Image.plus
-        }
-        .disabled(viewModel.isEditMode)
-    }
-
     @ViewBuilder
-    var list: some View {
+    var content: some View {
         if viewModel.isProductListEmpty {
             emptyList
         } else {
             productList
+        }
+    }
+
+    // MARK: - LEVEL 1 Views: Main UI Elements
+
+    func addProductToolbarItem() -> some ToolbarContent {
+        ToolbarItem(
+            placement: .navigationBarLeading,
+            content: addProductButton
+        )
+    }
+
+    @ToolbarContentBuilder
+    func deleteSelectedProductsToolbarItem() -> some ToolbarContent {
+        if viewModel.isEditing {
+            ToolbarItemGroup(
+                placement: .bottomBar,
+                content: deleteSelectedProductsButton
+            )
         }
     }
 
@@ -65,81 +56,51 @@ struct ProductListScreen: View {
     }
 
     var productList: some View {
-        List(viewModel.productSections) { productSection($0) }
-            .listStyle(.plain)
-            .toolbar {
-                Button(
-                    action: viewModel.toggleEditMode,
-                    label: { Text(LocalizedStringKey(viewModel.localizedEditButtonTitle)) }
-                )
-            }
+        List(
+            viewModel.productSections,
+            rowContent: productListContent
+        )
+        .listStyle(.plain)
+        .toolbar(content: editListToolbarItem)
     }
 
-    func productSection(_ viewData: ProductSectionViewData) -> some View {
-        Section(content: {
-            ForEach(viewData.products) { productRow($0) }
-        }, header: {
-            Text(viewData.headerTitle)
-        })
+    // MARK: - LEVEL 2 Views: Helpers & Other Subcomponents
+
+    func addProductButton() -> some View {
+        NavigationLink(
+            destination: ProductDetailsScreen.init,
+            label: { Image.plus }
+        )
     }
 
-    func selectionImage(for viewData: ProductViewData) -> Image {
-        if viewModel.selection.contains(viewData) {
-            return .circleWithInset
-        } else {
-            return .circle
-        }
+    func deleteSelectedProductsButton() -> some View {
+        Button(
+            role: .destructive,
+            action: viewModel.deleteSelected,
+            label: { Text(viewModel.localizedDeleteButtonTitle) }
+        )
+        .disabled(viewModel.isSelectionEmpty)
     }
 
-    @ViewBuilder
-    func productRow(_ viewData: ProductViewData) -> some View {
-        if viewModel.isEditMode {
-            Button(
-                action: {
-                        if viewModel.selection.contains(viewData) {
-                            viewModel.selection.remove(viewData)
-                        } else {
-                            viewModel.selection.insert(viewData)
-                        }
-                },
-                label: {
-                    HStack {
-                       selectionImage(for: viewData)
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(maxWidth: 24, maxHeight: 24)
-                            .foregroundColor(.accentColor)
-                        productRowLabel(viewData)
-                    }
-                }
-            )
-        } else {
-            NavigationLink(
-                destination: { ProductDetailsScreen(product: viewModel.product(for: viewData.id)) },
-                label: { productRowLabel(viewData) }
-            )
-        }
+    func productListContent(_ viewData: ProductSectionViewData) -> some View {
+        ProductSection(
+            viewData: viewData,
+            isEditing: $viewModel.isEditing
+        )
     }
 
-    func productRowLabel(_ viewData: ProductViewData) -> some View {
-        HStack {
-            if let image = viewData.image {
-                Image(uiImage: image)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(maxWidth: 50, maxHeight: 50, alignment: .center) // TODO: move to config
-            }
-            VStack(alignment: .leading) {
-                if let name = viewData.name {
-                    Text(name)
-                }
-                if let mostSimilarProductName = viewData.mostSimilarProductName {
-                    Text(mostSimilarProductName)
-                        .monospaced(true)
-                        .font(.system(size: 12))
-                }
-            }
-        }
+    func editListToolbarItem() -> some ToolbarContent {
+        ToolbarItem(
+            placement: .navigationBarTrailing,
+            content: editListButton
+        )
+    }
+
+    func editListButton() -> some View {
+        Button(
+            action: viewModel.toggleEditMode,
+            label: { Text(LocalizedStringKey(viewModel.localizedEditButtonTitle)) }
+        )
     }
 }
 

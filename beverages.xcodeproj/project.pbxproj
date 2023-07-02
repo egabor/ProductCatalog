@@ -21,6 +21,8 @@
 		625ACC2E2A50D8170024EFE6 /* ExportWarning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 625ACC2D2A50D8170024EFE6 /* ExportWarning.swift */; };
 		625ACC302A50D82A0024EFE6 /* ExportError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 625ACC2F2A50D82A0024EFE6 /* ExportError.swift */; };
 		625ACC342A51670D0024EFE6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 625ACC332A51670D0024EFE6 /* Constants.swift */; };
+		625ACC372A51722E0024EFE6 /* ProductSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 625ACC362A51722E0024EFE6 /* ProductSection.swift */; };
+		625ACC392A5172BB0024EFE6 /* ProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 625ACC382A5172BB0024EFE6 /* ProductView.swift */; };
 		62B621722A4E0109003ACCA6 /* beveragesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B621712A4E0109003ACCA6 /* beveragesApp.swift */; };
 		62B621762A4E010B003ACCA6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62B621752A4E010B003ACCA6 /* Assets.xcassets */; };
 		62B621792A4E010B003ACCA6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62B621782A4E010B003ACCA6 /* Preview Assets.xcassets */; };
@@ -69,6 +71,8 @@
 		625ACC2D2A50D8170024EFE6 /* ExportWarning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportWarning.swift; sourceTree = "<group>"; };
 		625ACC2F2A50D82A0024EFE6 /* ExportError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportError.swift; sourceTree = "<group>"; };
 		625ACC332A51670D0024EFE6 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		625ACC362A51722E0024EFE6 /* ProductSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductSection.swift; sourceTree = "<group>"; };
+		625ACC382A5172BB0024EFE6 /* ProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductView.swift; sourceTree = "<group>"; };
 		62B6216E2A4E0109003ACCA6 /* beverages.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = beverages.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		62B621712A4E0109003ACCA6 /* beveragesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = beveragesApp.swift; sourceTree = "<group>"; };
 		62B621752A4E010B003ACCA6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -151,15 +155,6 @@
 			path = Features;
 			sourceTree = "<group>";
 		};
-		625ACC352A516A600024EFE6 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				625ACC1A2A50C2540024EFE6 /* ProductViewData.swift */,
-				625ACC1C2A50C2800024EFE6 /* ProductSectionViewData.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
 		62B621652A4E0108003ACCA6 = {
 			isa = PBXGroup;
 			children = (
@@ -227,7 +222,10 @@
 			children = (
 				62B621AF2A4E0AD9003ACCA6 /* ProductListScreen.swift */,
 				625ACC142A503DE50024EFE6 /* ProductListViewModel.swift */,
-				625ACC352A516A600024EFE6 /* Models */,
+				625ACC362A51722E0024EFE6 /* ProductSection.swift */,
+				625ACC1C2A50C2800024EFE6 /* ProductSectionViewData.swift */,
+				625ACC382A5172BB0024EFE6 /* ProductView.swift */,
+				625ACC1A2A50C2540024EFE6 /* ProductViewData.swift */,
 			);
 			path = ProductList;
 			sourceTree = "<group>";
@@ -401,6 +399,7 @@
 			files = (
 				62B621B02A4E0AD9003ACCA6 /* ProductListScreen.swift in Sources */,
 				62B621722A4E0109003ACCA6 /* beveragesApp.swift in Sources */,
+				625ACC392A5172BB0024EFE6 /* ProductView.swift in Sources */,
 				625ACC302A50D82A0024EFE6 /* ExportError.swift in Sources */,
 				62B621AC2A4E0861003ACCA6 /* Product.swift in Sources */,
 				62B621B62A4ECDA9003ACCA6 /* Product+Parsing.swift in Sources */,
@@ -419,6 +418,7 @@
 				62B621BA2A4ED249003ACCA6 /* DBProduct+SQLite.swift in Sources */,
 				625ACC1F2A50C29E0024EFE6 /* StringPair.swift in Sources */,
 				62B621C52A4F0910003ACCA6 /* ScannerScreen.swift in Sources */,
+				625ACC372A51722E0024EFE6 /* ProductSection.swift in Sources */,
 				625ACC2E2A50D8170024EFE6 /* ExportWarning.swift in Sources */,
 				62B621AE2A4E086D003ACCA6 /* DBProduct.swift in Sources */,
 				62B621C02A4EEBCA003ACCA6 /* Resolver+Product.swift in Sources */,

@@ -13,8 +13,12 @@ class ProductListViewModel: ObservableObject {
 
     private var products: [Product] = []
     @Published var productSections: [ProductSectionViewData] = []
-    @Published var isEditMode: Bool = false
-    @Published var selection = Set<ProductViewData>()
+    @Published var isEditing: Bool = false
+    @Published var selection = Set<Int>()
+
+    var isSelectionEmpty: Bool {
+        selection.isEmpty
+    }
 
     var levenshteinDistances: [(pair: StringPair, distance: Int)] = []
 
@@ -48,11 +52,16 @@ class ProductListViewModel: ObservableObject {
                                 productA.name.localizedCaseInsensitiveCompare(productB.name) == .orderedAscending
                             }
                             .map { product in
-                                .init(
-                                    id: product.productId!, // productId always be there at this point
+                                let productId: Int = product.productId! // productId always be there at this point
+                                return ProductViewData(
+                                    id: productId,
                                     image: product.image,
                                     name: product.name,
-                                    mostSimilarProductName: mostSimilarProductName(for: product.name)
+                                    mostSimilarProductName: mostSimilarProductName(for: product.name),
+                                    isSelected: { [weak self] in self?.selection.contains(productId) ?? false },
+                                    select: { [weak self] in self?.selection.insert(productId) },
+                                    deselect: { [weak self] in self?.selection.remove(productId) },
+                                    getProduct: { [weak self] in self?.getProduct(for: productId) }
                                 )
                             }
                     )
@@ -84,16 +93,16 @@ class ProductListViewModel: ObservableObject {
     }
 
     func deleteSelected() {
-        try? productService.deleteProducts(by: selection.map { $0.id })
+        try? productService.deleteProducts(by: selection.map { $0 })
         selection.removeAll()
     }
 
-    func product(for productId: Int) -> Product? {
+    func getProduct(for productId: Int) -> Product? {
         products.first(where: { $0.productId == productId })
     }
 
     func toggleEditMode() {
-        isEditMode.toggle()
+        isEditing.toggle()
     }
 
     private func setupSubscriptions() {
@@ -115,7 +124,7 @@ extension ProductListViewModel {
     }
 
     var localizedEditButtonTitle: String {
-        if isEditMode {
+        if isEditing {
             return .productListScreenDoneButtonTitle
         }
         return .productListScreenEditButtonTitle
