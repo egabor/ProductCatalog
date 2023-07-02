@@ -10,7 +10,15 @@ import UIKit
 
 struct ImagePickerMediaSourceType: Identifiable {
 
-    let id: String
+    enum SourceTypeIdentifier: String, Identifiable {
+
+        case photoLibrary
+        case camera
+
+        var id: String { rawValue }
+    }
+
+    let id: SourceTypeIdentifier
     let sourceType: UIImagePickerController.SourceType
     let displayValueKey: String
 
@@ -22,13 +30,13 @@ struct ImagePickerMediaSourceType: Identifiable {
 extension ImagePickerMediaSourceType {
 
     static let photoLibrary: Self = .init(
-        id: "photoLibrary", // TODO: move to constants
+        id: .photoLibrary,
         sourceType: .photoLibrary,
         displayValueKey: .imagePickerMediaSourceTypePhotoLibraryTitle
     )
 
     static let camera: Self = .init(
-        id: "camera", // TODO: move to constants
+        id: .camera,
         sourceType: .camera,
         displayValueKey: .imagePickerMediaSourceTypeCameraTitle
     )

@@ -128,6 +128,26 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		625ACC312A5165330024EFE6 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				62B621A32A4E035E003ACCA6 /* SQLiteHelper.swift */,
+				625ACC162A50AEC30024EFE6 /* String+Levenshtein.swift */,
+				625ACC222A50C6BF0024EFE6 /* String+Trimmed.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		625ACC322A51655F0024EFE6 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				62B621C62A4F6B82003ACCA6 /* ImagePicker */,
+				62B621C32A4F08F5003ACCA6 /* Scanner */,
+				62B621A52A4E07C1003ACCA6 /* Products */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
 		62B621652A4E0108003ACCA6 = {
 			isa = PBXGroup;
 			children = (
@@ -150,15 +170,13 @@
 			isa = PBXGroup;
 			children = (
 				62B621712A4E0109003ACCA6 /* beveragesApp.swift */,
-				625ACC292A50CB5C0024EFE6 /* Constants */,
 				62B621A12A4E0306003ACCA6 /* Resolver+Registry.swift */,
-				62B621A32A4E035E003ACCA6 /* SQLiteHelper.swift */,
-				625ACC162A50AEC30024EFE6 /* String+Levenshtein.swift */,
-				625ACC222A50C6BF0024EFE6 /* String+Trimmed.swift */,
-				625ACC282A50CB220024EFE6 /* Localizable.strings */,
-				62B621A52A4E07C1003ACCA6 /* Products */,
+				625ACC292A50CB5C0024EFE6 /* Constants */,
+				625ACC312A5165330024EFE6 /* Utils */,
+				625ACC322A51655F0024EFE6 /* Features */,
 				62B621752A4E010B003ACCA6 /* Assets.xcassets */,
 				625ACC122A503A3D0024EFE6 /* products.db */,
+				625ACC282A50CB220024EFE6 /* Localizable.strings */,
 				62B621772A4E010B003ACCA6 /* Preview Content */,
 			);
 			path = beverages;
@@ -183,8 +201,6 @@
 		62B621A52A4E07C1003ACCA6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				62B621C62A4F6B82003ACCA6 /* ImagePicker */,
-				62B621C32A4F08F5003ACCA6 /* Scanner */,
 				62B621BF2A4EEBCA003ACCA6 /* Resolver+Product.swift */,
 				62B621C12A4EEC05003ACCA6 /* ProductService.swift */,
 				62B621A62A4E07E9003ACCA6 /* ProductList */,
