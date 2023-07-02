@@ -38,6 +38,6 @@ MVVM architecture is used in the project along with SwiftUI and Combine.
 
 ![01](/images/c01.PNG)
 ![02](/images/c02.PNG)
-![03](/images/c03.jped)
+![03](/images/c03.jpeg)
 ![04](/images/c04.PNG)
 ![05](/images/c05.PNG)
