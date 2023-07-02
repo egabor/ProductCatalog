@@ -8,6 +8,7 @@
 import SwiftUI
 
 extension Image {
+
     static let plus = Image(systemName: "plus")
     static let circle = Image(systemName: "circle")
     static let circleWithInset = Image(systemName: "circle.inset.filled")

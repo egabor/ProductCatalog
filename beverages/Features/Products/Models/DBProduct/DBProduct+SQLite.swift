@@ -27,7 +27,7 @@ extension DBProduct {
             print("Invalid directory")
             return nil
         }
-        let databasePath = documentsDirectory.appendingPathComponent("products.db") // TODO: Move to constant
+        let databasePath = documentsDirectory.appendingPathComponent("\(Constants.databaseFileName).\(Constants.databaseFileExtension)")
         return try? Connection(databasePath.absoluteString)
     }
 

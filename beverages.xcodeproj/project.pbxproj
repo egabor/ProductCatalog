@@ -17,9 +17,10 @@
 		625ACC212A50C37D0024EFE6 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 625ACC202A50C37D0024EFE6 /* Images.swift */; };
 		625ACC232A50C6BF0024EFE6 /* String+Trimmed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 625ACC222A50C6BF0024EFE6 /* String+Trimmed.swift */; };
 		625ACC262A50CB220024EFE6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 625ACC282A50CB220024EFE6 /* Localizable.strings */; };
-		625ACC2B2A50CB670024EFE6 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 625ACC2A2A50CB670024EFE6 /* Strings.swift */; };
+		625ACC2B2A50CB670024EFE6 /* String+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 625ACC2A2A50CB670024EFE6 /* String+Localization.swift */; };
 		625ACC2E2A50D8170024EFE6 /* ExportWarning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 625ACC2D2A50D8170024EFE6 /* ExportWarning.swift */; };
 		625ACC302A50D82A0024EFE6 /* ExportError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 625ACC2F2A50D82A0024EFE6 /* ExportError.swift */; };
+		625ACC342A51670D0024EFE6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 625ACC332A51670D0024EFE6 /* Constants.swift */; };
 		62B621722A4E0109003ACCA6 /* beveragesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B621712A4E0109003ACCA6 /* beveragesApp.swift */; };
 		62B621762A4E010B003ACCA6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62B621752A4E010B003ACCA6 /* Assets.xcassets */; };
 		62B621792A4E010B003ACCA6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62B621782A4E010B003ACCA6 /* Preview Assets.xcassets */; };
@@ -64,9 +65,10 @@
 		625ACC202A50C37D0024EFE6 /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
 		625ACC222A50C6BF0024EFE6 /* String+Trimmed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Trimmed.swift"; sourceTree = "<group>"; };
 		625ACC272A50CB220024EFE6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		625ACC2A2A50CB670024EFE6 /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
+		625ACC2A2A50CB670024EFE6 /* String+Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Localization.swift"; sourceTree = "<group>"; };
 		625ACC2D2A50D8170024EFE6 /* ExportWarning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportWarning.swift; sourceTree = "<group>"; };
 		625ACC2F2A50D82A0024EFE6 /* ExportError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportError.swift; sourceTree = "<group>"; };
+		625ACC332A51670D0024EFE6 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		62B6216E2A4E0109003ACCA6 /* beverages.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = beverages.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		62B621712A4E0109003ACCA6 /* beveragesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = beveragesApp.swift; sourceTree = "<group>"; };
 		62B621752A4E010B003ACCA6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -114,7 +116,8 @@
 			isa = PBXGroup;
 			children = (
 				625ACC202A50C37D0024EFE6 /* Images.swift */,
-				625ACC2A2A50CB670024EFE6 /* Strings.swift */,
+				625ACC2A2A50CB670024EFE6 /* String+Localization.swift */,
+				625ACC332A51670D0024EFE6 /* Constants.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -396,9 +399,10 @@
 				62B621B22A4E0AEA003ACCA6 /* ProductDetailsScreen.swift in Sources */,
 				62B621C22A4EEC05003ACCA6 /* ProductService.swift in Sources */,
 				625ACC1B2A50C2540024EFE6 /* ProductViewData.swift in Sources */,
-				625ACC2B2A50CB670024EFE6 /* Strings.swift in Sources */,
+				625ACC2B2A50CB670024EFE6 /* String+Localization.swift in Sources */,
 				625ACC212A50C37D0024EFE6 /* Images.swift in Sources */,
 				625ACC192A50C1DB0024EFE6 /* ImagePickerMediaSourceType.swift in Sources */,
+				625ACC342A51670D0024EFE6 /* Constants.swift in Sources */,
 				625ACC172A50AEC30024EFE6 /* String+Levenshtein.swift in Sources */,
 				62B621A22A4E0306003ACCA6 /* Resolver+Registry.swift in Sources */,
 				62B621B82A4ED02E003ACCA6 /* DBProduct+Parsing.swift in Sources */,
