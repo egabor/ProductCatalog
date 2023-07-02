@@ -32,7 +32,7 @@ extension DBProduct {
     }
 
     static var productsTable: Table {
-        .init("products")
+        .init("Products")
     }
 
     private var setters: [Setter] {
